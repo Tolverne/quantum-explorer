@@ -12,7 +12,7 @@ function Guide({ plane }: { plane: 'xy' | 'xz' | 'yz' }) {
         plane === 'xz' ? new THREE.Vector3(x,0,y) : new THREE.Vector3(0,x,y)
     })
   ), [plane])
-  return <line geometry={geometry}><lineBasicMaterial color="#8faac8" transparent opacity={0.55}/></line>
+  return <primitive object={new THREE.Line(geometry, new THREE.LineBasicMaterial({color:"#8faac8",transparent:true,opacity:0.55}))}/>
 }
 function Axis({ direction, color, name }: {direction:[number,number,number];color:string;name:string}) {
   const geom = useMemo(() => new THREE.BufferGeometry().setFromPoints([
@@ -20,7 +20,7 @@ function Axis({ direction, color, name }: {direction:[number,number,number];colo
     new THREE.Vector3(...direction).multiplyScalar(1.42)
   ]), [direction[0],direction[1],direction[2]])
   return <>
-    <line geometry={geom}><lineBasicMaterial color={color} transparent opacity={0.8}/></line>
+    <primitive object={new THREE.Line(geom, new THREE.LineBasicMaterial({color,transparent:true,opacity:0.8}))}/>
     <Text position={new THREE.Vector3(...direction).multiplyScalar(1.65)} fontSize={0.19} color={color}>{name}</Text>
   </>
 }
