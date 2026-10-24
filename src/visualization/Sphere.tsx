@@ -161,7 +161,10 @@ export default function Sphere({ state, target, allowedAxes, heldAxis, onStartHo
     <Text position={[0.25,0,1.2]} fontSize={0.18} color="white">|0⟩</Text>
     <Text position={[0.25,0,-1.2]} fontSize={0.18} color="white">|1⟩</Text>
     {target && <TargetArrow target={target}/>}
-    <Arrow state={state}/>
+    {Math.hypot(...state) < 1e-5 ? <mesh>
+      <sphereGeometry args={[0.13,24,16]}/>
+      <meshBasicMaterial color="#ffd48b"/>
+    </mesh> : <Arrow state={state}/>}
     <OrbitControls
       enabled={!locked && !busy}
       enablePan={false}

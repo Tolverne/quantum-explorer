@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import Sphere from './visualization/Sphere'
 import MeasurementLab from './measurement/MeasurementLab'
+import EntanglementLab from './entanglement/EntanglementLab'
 import { NORTH, rotate, stateName, type Axis, type Pulse, type Vector } from './quantum/bloch'
 import { holdDegrees, roundDegrees } from './interaction/hold'
 import { CHALLENGES, applyFrom, checkChallenge, type Challenge } from './challenges/challenges'
 
 const PULSE_DURATION_MS = 630
 type HoldSession = { axis: Axis; from: Vector; started: number; direction: 1 | -1 }
-type Mode = 'explore' | 'challenge' | 'measurement'
+type Mode = 'explore' | 'challenge' | 'measurement' | 'entanglement'
 
 export default function App() {
   const [vector, setVector] = useState<Vector>(NORTH)
@@ -192,17 +193,18 @@ export default function App() {
     <header className="header">
       <span className="logo">Q</span>
       <div><strong>Quantum Explorer</strong><span className="subtitle">Visual quantum physics · no sign-in required</span></div>
-      <span className="chip">M3 · Quantum Measurement</span>
+      <span className="chip">M4 · Entanglement</span>
     </header>
     <main>
       <section className="intro">
-        <span className="overline">{mode === 'measurement' ? 'LESSON 02 · QUANTUM MEASUREMENT' : 'LESSON 01 · THE QUANTUM STATE'}</span>
-        <h1>{mode === 'measurement' ? 'What happens when we measure?' : 'What is a qubit?'}</h1>
-        <p>{mode === 'measurement' ? 'Prepare a quantum state, observe individual results and compare repeated measurements with predictions.' : 'Discover quantum rotations by moving the Bloch vector. In Challenge mode, try to match the translucent target arrow using as few pulses as you can.'}</p>
+        <span className="overline">{mode === 'entanglement' ? 'LESSON 03 · ENTANGLEMENT' : mode === 'measurement' ? 'LESSON 02 · QUANTUM MEASUREMENT' : 'LESSON 01 · THE QUANTUM STATE'}</span>
+        <h1>{mode === 'entanglement' ? 'What is entanglement?' : mode === 'measurement' ? 'What happens when we measure?' : 'What is a qubit?'}</h1>
+        <p>{mode === 'entanglement' ? 'Explore correlations between two qubits and discover the difference between classical pairs and Bell states.' : mode === 'measurement' ? 'Prepare a quantum state, observe individual results and compare repeated measurements with predictions.' : 'Discover quantum rotations by moving the Bloch vector. In Challenge mode, try to match the translucent target arrow using as few pulses as you can.'}</p>
         <div className="mode-switch" role="group" aria-label="Explorer mode">
           <button type="button" className={mode === 'challenge' ? 'selected' : ''} aria-pressed={mode === 'challenge'} disabled={busy} onClick={() => chooseMode('challenge')}>🎯 Challenges</button>
           <button type="button" className={mode === 'explore' ? 'selected' : ''} aria-pressed={mode === 'explore'} disabled={busy} onClick={() => chooseMode('explore')}>Free explorer</button>
           <button type="button" className={mode === 'measurement' ? 'selected' : ''} aria-pressed={mode === 'measurement'} disabled={busy} onClick={() => chooseMode('measurement')}>Measurement lab</button>
+          <button type="button" className={mode === 'entanglement' ? 'selected' : ''} aria-pressed={mode === 'entanglement'} disabled={busy} onClick={() => chooseMode('entanglement')}>Entanglement lab</button>
         </div>
       </section>
       {mode === 'challenge' && <section className="challenge-panel" aria-label="Bloch sphere challenges">
@@ -244,7 +246,8 @@ export default function App() {
         </div>}
       </section>}
       {mode === 'measurement' && <MeasurementLab/>}
-      {mode !== 'measurement' && <div className="layout">
+      {mode === 'entanglement' && <EntanglementLab/>}
+      {(mode === 'challenge' || mode === 'explore') && <div className="layout">
         <section className="canvas-panel">
           <div className="panel-heading">
             <div><h2>Bloch sphere</h2><span className="tip">{cameraLocked ? 'View locked' : 'Drag empty space to orbit · Scroll to zoom'}</span></div>
@@ -304,6 +307,6 @@ export default function App() {
         </section>
       </div>}
     </main>
-    <footer>Quantum Explorer · Runs entirely in your browser · Next module: entanglement</footer>
+    <footer>Quantum Explorer · Runs entirely in your browser · Explore qubits, measurement and entanglement</footer>
   </div>
 }
