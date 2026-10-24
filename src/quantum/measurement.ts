@@ -28,7 +28,7 @@ export function measurementProbabilities(state: Vector, basis: MeasurementBasis)
 
 export function collapsedState(basis: MeasurementBasis, outcome: Outcome): Vector {
   const axis = BASIS_DIRECTIONS[basis]
-  return outcome === 0 ? axis : [-axis[0], -axis[1], -axis[2]]
+  return outcome === 0 ? axis : [(-axis[0]) || 0, (-axis[1]) || 0, (-axis[2]) || 0]
 }
 
 export type MeasurementResult = {
