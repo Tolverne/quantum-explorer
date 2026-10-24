@@ -33,7 +33,7 @@ Here each pair is measured with both detectors in the indicated basis.
 
 | Prepared pair | ZZ outcomes | XX outcomes | Correlation E_ZZ | Correlation E_XX |
 |---|---|---|---:|---:|
-| Independent |++⟩ | 00/01/10/11 equally likely | ++ always | 0 | +1 |
+| Independent (+X,+X) | 00/01/10/11 equally likely | ++ always | 0 | +1 |
 | Classical 00/11 mixture | 00 or 11, each 50% | ++/+−/−+/−− equally likely | +1 | 0 |
 | Bell Φ+ = (00+11)/√2 | 00 or 11, each 50% | ++ or −−, each 50% | +1 | +1 |
 | Bell Φ− = (00−11)/√2 | 00 or 11, each 50% | +− or −+, each 50% | +1 | −1 |
