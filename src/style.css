@@ -10,3 +10,38 @@
 .direction-picker button{background:#20334c;color:#d9e6f7;border:1px solid #395579;border-radius:8px;padding:8px 10px;font-size:13px}
 .direction-picker button.selected{background:#226e6e;border-color:#6fd2c6;color:white}
 .controls h3{margin:24px 0 12px;font-size:15px}
+
+
+/* M2 guided target-state challenges */
+.mode-switch{display:inline-flex;gap:5px;background:#192c43;border:1px solid #34516c;border-radius:12px;padding:5px;margin-top:12px}
+.mode-switch button{background:transparent;color:#b5cae2;border:0;border-radius:8px;padding:10px 16px;font-weight:700}
+.mode-switch button.selected{background:#287f7e;color:white}
+.mode-switch button:focus-visible,.challenge-panel button:focus-visible,.controls button:focus-visible{outline:3px solid #f5d687;outline-offset:2px}
+.challenge-panel{background:#15273d;border:1px solid #335471;border-radius:16px;padding:20px;margin-bottom:20px}
+.challenge-topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.progress-count{font-size:12px;color:#b0c7df}
+.challenge-nav{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0 20px}
+.challenge-nav button{width:42px;height:42px;border-radius:50%;background:#243b57;border:1px solid #446281;color:#c4d9ef;font-size:15px;font-weight:700}
+.challenge-nav button.selected{background:#286b75;border:2px solid #81e5dc;color:#fff}
+.challenge-nav button.complete{color:#a6f0c4;border-color:#4ab38d}
+.challenge-nav button.selected.complete{color:white}
+.challenge-details{display:flex;justify-content:space-between;gap:22px;align-items:start}
+.challenge-details h2{margin:0 0 8px;font-size:22px}
+.challenge-details p{margin:0 0 14px;line-height:1.5;color:#c1d2e7}
+.challenge-tags{display:flex;gap:8px;flex-wrap:wrap}
+.challenge-tags span{font-size:12px;border:1px solid #3b5675;padding:6px 9px;border-radius:7px;background:#1c344c;color:#adbed8}
+.challenge-tags strong{color:#f3e9cb}
+.challenge-actions{display:flex;flex-direction:column;gap:8px;flex:0 0 165px}
+.challenge-actions button{border-radius:9px;padding:11px 10px;border:1px solid #3b6281;background:#28425f;color:#edf3ff;font-weight:650}
+.challenge-actions .check-button{background:#28837c;color:#fff;border-color:#49a99e}
+.challenge-actions .hint-button{background:#233c58}
+.challenge-actions .next-button{background:#233c58}
+.challenge-actions button:hover:not(:disabled){filter:brightness(1.15)}
+.hint-text{padding:12px 14px;margin:16px 0 0;background:#263955;border-left:3px solid #edc77d;border-radius:5px;color:#f1ddbd;font-size:14px}
+.result-banner{margin-top:16px;border-radius:9px;padding:13px 16px;font-size:14px;line-height:1.55}
+.result-banner.success{background:#183e3e;color:#aef4d5;border:1px solid #3a8b75}
+.result-banner.not-yet{background:#483b2c;color:#f6ddb0;border:1px solid #956c42}
+.target-legend{display:flex;align-items:center;gap:7px;font-size:12px;color:#c0d3e9;padding:9px 20px;background:#1c3045}
+.swatch{display:inline-block;width:11px;height:11px;border-radius:50%;margin-left:5px}
+.swatch.actual{background:#ffd48b}.swatch.goal{background:#65ecd7}
+@media(max-width:700px){.challenge-details{flex-direction:column}.challenge-actions{flex-direction:row;flex-wrap:wrap;flex-basis:auto}.challenge-actions button{flex:1;min-width:110px}.mode-switch{display:flex}.mode-switch button{flex:1}}

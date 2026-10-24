@@ -81,9 +81,9 @@ function Axis({ direction, color, axis, active, disabled, onStartHold, onEndHold
           position={[0,0,0.012]}
           fontSize={0.27}
           fontWeight={700}
-          color={active ? '#fff4aa' : hovered ? '#ffffff' : color}
+          color={disabled && !active ? '#60748d' : active ? '#fff4aa' : hovered ? '#ffffff' : color}
           outlineColor={active ? '#ff9c38' : color}
-          outlineWidth={active ? 0.035 : hovered ? 0.022 : 0}
+          outlineWidth={active ? 0.035 : hovered && !disabled ? 0.022 : 0}
           anchorX="center"
           anchorY="middle"
         >
@@ -113,8 +113,32 @@ function Arrow({ state }: { state: Vector }) {
   </group>
 }
 
-export default function Sphere({ state, heldAxis, onStartHold, onEndHold, locked, busy }: {
+
+function TargetArrow({ target }: { target: Vector }) {
+  const rotation = useMemo(() => new THREE.Quaternion().setFromUnitVectors(
+    new THREE.Vector3(0,0,1),
+    new THREE.Vector3(...target).normalize()
+  ), [target[0], target[1], target[2]])
+  return <group quaternion={rotation}>
+    <mesh position={[0,0,0.47]} rotation={[Math.PI/2,0,0]}>
+      <cylinderGeometry args={[0.055,0.055,0.94,14]}/>
+      <meshBasicMaterial color="#65ecd7" transparent opacity={0.4} depthWrite={false}/>
+    </mesh>
+    <mesh position={[0,0,1.045]} rotation={[Math.PI/2,0,0]}>
+      <coneGeometry args={[0.16,0.21,16]}/>
+      <meshBasicMaterial color="#65ecd7" transparent opacity={0.4} depthWrite={false}/>
+    </mesh>
+    <mesh position={[0,0,1.21]}>
+      <torusGeometry args={[0.15,0.017,8,40]}/>
+      <meshBasicMaterial color="#65ecd7" transparent opacity={0.85} depthWrite={false}/>
+    </mesh>
+  </group>
+}
+
+export default function Sphere({ state, target, allowedAxes, heldAxis, onStartHold, onEndHold, locked, busy }: {
   state: Vector
+  target?: Vector
+  allowedAxes: readonly Axis[]
   heldAxis: Axis | null
   onStartHold: (axis: Axis) => void
   onEndHold: () => void
@@ -130,16 +154,17 @@ export default function Sphere({ state, heldAxis, onStartHold, onEndHold, locked
       <meshStandardMaterial color="#4e8dc5" transparent opacity={0.11} depthWrite={false}/>
     </mesh>
     <Guide plane="xy"/><Guide plane="xz"/><Guide plane="yz"/>
-    <Axis direction={[1,0,0]} color="#ef8a79" axis="x" active={heldAxis==='x'} disabled={busy} onStartHold={onStartHold} onEndHold={onEndHold}/>
-    <Axis direction={[0,1,0]} color="#78dbba" axis="y" active={heldAxis==='y'} disabled={busy} onStartHold={onStartHold} onEndHold={onEndHold}/>
-    <Axis direction={[0,0,1]} color="#86aafa" axis="z" active={heldAxis==='z'} disabled={busy} onStartHold={onStartHold} onEndHold={onEndHold}/>
+    <Axis direction={[1,0,0]} color="#ef8a79" axis="x" active={heldAxis==='x'} disabled={busy || !allowedAxes.includes('x')} onStartHold={onStartHold} onEndHold={onEndHold}/>
+    <Axis direction={[0,1,0]} color="#78dbba" axis="y" active={heldAxis==='y'} disabled={busy || !allowedAxes.includes('y')} onStartHold={onStartHold} onEndHold={onEndHold}/>
+    <Axis direction={[0,0,1]} color="#86aafa" axis="z" active={heldAxis==='z'} disabled={busy || !allowedAxes.includes('z')} onStartHold={onStartHold} onEndHold={onEndHold}/>
     <Text position={[0.25,0,1.2]} fontSize={0.18} color="white">|0⟩</Text>
     <Text position={[0.25,0,-1.2]} fontSize={0.18} color="white">|1⟩</Text>
+    {target && <TargetArrow target={target}/>}
     <Arrow state={state}/>
     <OrbitControls
       enabled={!locked && !busy}
       enablePan={false}
-      rotateSpeed={3.2}
+      rotateSpeed={1.55}
       zoomSpeed={1.5}
       minDistance={1.8}
       maxDistance={8}
