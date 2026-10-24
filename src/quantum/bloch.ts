@@ -1,6 +1,6 @@
 export type Axis = 'x' | 'y' | 'z'
 export type Vector = readonly [number, number, number]
-export type Pulse = { axis: Axis; angle: -90 | 90 | 180 }
+export type Pulse = { axis: Axis; angle: number }
 export const NORTH: Vector = [0, 0, 1]
 const axes: Record<Axis, Vector> = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] }
 export function rotate(v: Vector, axis: Axis, degrees: number): Vector {

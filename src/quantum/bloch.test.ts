@@ -16,3 +16,13 @@ describe('Bloch sphere rotation conventions', () => {
   ]))).toBeCloseTo(1, 10))
   it('names cardinal states', () => expect(stateName(rotate(NORTH,'y',90))).toBe('|+⟩'))
 })
+
+describe('arbitrary-angle controls', () => {
+  it('rotates 45 degrees around Y', () => same(rotate(NORTH,'y',45), [Math.SQRT1_2,0,Math.SQRT1_2]))
+  it('does not move an axis-aligned vector around its own axis', () => same(rotate([1,0,0],'x',137),[1,0,0]))
+  it('preserves length over 180 arbitrary pulses', () => {
+    let value:Vector=NORTH
+    for(let i=0;i<180;i++) value=rotate(value,(['x','y','z'] as const)[i%3],17)
+    expect(Math.hypot(...value)).toBeCloseTo(1,10)
+  })
+})
