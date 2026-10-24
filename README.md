@@ -20,6 +20,19 @@ Each challenge begins from a known prepared state, shows a **translucent cyan ta
 
 The displayed example pulse count is a reference, not a grading penalty. Fixed-angle gate buttons and on-sphere press-and-hold rotations both count as pulses.
 
+## M3 — Quantum measurement laboratory
+
+Select the **Measurement lab** tab to explore the crucial distinction between a *quantum state* and the *outcome of an experiment*. The M3 lesson adds:
+
+- State presets |0⟩, |1⟩, |+⟩ and |−⟩, or arbitrary preparations via the same Bloch sphere pulse controls used in M1.
+- **Z-basis (0/1)** and **X-basis (+/−)** measurement, with Born-rule probabilities displayed before each result.
+- **Single-qubit measurement:** one randomly sampled outcome updates/collapses the actual state. Measure that same qubit again or re-prepare the original state.
+- **Repeated trials:** collect 10, 100 or 1,000 measurements with fresh preparation for *each* trial. Compare observed frequency bars with the theoretical probability markers.
+- A cyan reference arrow after a single measurement to show the pre-measurement prepared state.
+- Built-in sample questions and a [Lesson 2 teacher guide](docs/m3-measurement-classroom-guide.md).
+
+The measurement engine is in [src/quantum/measurement.ts](src/quantum/measurement.ts) with deterministic unit tests for probability, X/Z basis changes, state collapse and independent preparations. **No hardware is contacted**; this is an ideal single-qubit simulator, not a quantum computer. The deeper interpretation of the measurement problem is not resolved by this model.
+
 ## Run locally
 
 Node.js 20+ recommended:
@@ -38,11 +51,11 @@ All state simulation and challenge scoring run in the browser: no server API, si
 - Positive angles use the right-hand rule; 180° X/Y/Z rotations are Pauli gates up to global phase.
 - An axis-aligned state can appear stationary under rotation about that same axis.
 - The cyan arrow is a visual goal, **not** another qubit or a measurement.
-- A Bloch vector does not display global phase; measurement is planned for M3.
+- A Bloch vector does not display global phase; projective X/Z measurements are included in M3.
 - Camera speed is **1.55** in OrbitControls (between the M1 initial and previous fast setting).
 
 ## Teacher resources
 See [M2 classroom guide](docs/m2-classroom-guide.md) for suggestions on investigation flow, student predictions, what to discuss and what the challenges do and do not show.
 
 ## Roadmap
-M1 rotations ✓ → M2 target challenges ✓ → M3 measurement → M4 entanglement → M5 complete curriculum → M6 offline distribution.
+M1 rotations ✓ → M2 target challenges ✓ → M3 measurement ✓ → M4 entanglement → M5 complete curriculum → M6 offline distribution.
