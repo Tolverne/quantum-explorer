@@ -217,7 +217,7 @@ export default function MeasurementLab() {
           <Sphere state={state} target={collapsed?preparedState:undefined}
             allowedAxes={['x','y','z']} heldAxis={heldAxis}
             onStartHold={startHold} onEndHold={finishHold}
-            locked={cameraLocked} busy={busy || collapsed}/>
+            locked={cameraLocked} busy={busy} axesDisabled={collapsed}/>
         </div>
         {collapsed && <div className="target-legend"><span className="swatch actual"/> Gold: state after measurement <span className="swatch goal"/> Cyan: state you prepared</div>}
         <div className="hold-readout">

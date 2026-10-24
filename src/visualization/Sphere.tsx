@@ -135,7 +135,7 @@ function TargetArrow({ target }: { target: Vector }) {
   </group>
 }
 
-export default function Sphere({ state, target, allowedAxes, heldAxis, onStartHold, onEndHold, locked, busy }: {
+export default function Sphere({ state, target, allowedAxes, heldAxis, onStartHold, onEndHold, locked, busy, axesDisabled = false }: {
   state: Vector
   target?: Vector
   allowedAxes: readonly Axis[]
@@ -144,6 +144,7 @@ export default function Sphere({ state, target, allowedAxes, heldAxis, onStartHo
   onEndHold: () => void
   locked: boolean
   busy: boolean
+  axesDisabled?: boolean
 }) {
   return <Canvas camera={{position:[2.9,2.4,2.5],fov:40}} dpr={[1,2]}>
     <color attach="background" args={['#101b30']}/>
@@ -154,9 +155,9 @@ export default function Sphere({ state, target, allowedAxes, heldAxis, onStartHo
       <meshStandardMaterial color="#4e8dc5" transparent opacity={0.11} depthWrite={false}/>
     </mesh>
     <Guide plane="xy"/><Guide plane="xz"/><Guide plane="yz"/>
-    <Axis direction={[1,0,0]} color="#ef8a79" axis="x" active={heldAxis==='x'} disabled={busy || !allowedAxes.includes('x')} onStartHold={onStartHold} onEndHold={onEndHold}/>
-    <Axis direction={[0,1,0]} color="#78dbba" axis="y" active={heldAxis==='y'} disabled={busy || !allowedAxes.includes('y')} onStartHold={onStartHold} onEndHold={onEndHold}/>
-    <Axis direction={[0,0,1]} color="#86aafa" axis="z" active={heldAxis==='z'} disabled={busy || !allowedAxes.includes('z')} onStartHold={onStartHold} onEndHold={onEndHold}/>
+    <Axis direction={[1,0,0]} color="#ef8a79" axis="x" active={heldAxis==='x'} disabled={busy || axesDisabled || !allowedAxes.includes('x')} onStartHold={onStartHold} onEndHold={onEndHold}/>
+    <Axis direction={[0,1,0]} color="#78dbba" axis="y" active={heldAxis==='y'} disabled={busy || axesDisabled || !allowedAxes.includes('y')} onStartHold={onStartHold} onEndHold={onEndHold}/>
+    <Axis direction={[0,0,1]} color="#86aafa" axis="z" active={heldAxis==='z'} disabled={busy || axesDisabled || !allowedAxes.includes('z')} onStartHold={onStartHold} onEndHold={onEndHold}/>
     <Text position={[0.25,0,1.2]} fontSize={0.18} color="white">|0⟩</Text>
     <Text position={[0.25,0,-1.2]} fontSize={0.18} color="white">|1⟩</Text>
     {target && <TargetArrow target={target}/>}
