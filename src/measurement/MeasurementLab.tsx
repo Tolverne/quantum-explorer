@@ -286,8 +286,8 @@ export default function MeasurementLab() {
         </button>
         {last ? <div className="last-outcome" role="status">
           <span>Most recent outcome</span>
-          <strong>{names[last.outcome]}</strong>
-          <small>State collapsed onto {last.basis.toUpperCase()}{last.outcome===0?'+':'−'}. {singleResults.length} measurement{singleResults.length===1?'':'s'} on this one qubit.</small>
+          <strong>{BASIS_LABELS[last.basis][last.outcome]}</strong>
+          <small>{last.basis.toUpperCase()}-basis outcome; its predicted chance before this measurement was {(last.probability*100).toFixed(1)}%. The qubit collapsed onto {last.basis.toUpperCase()}{last.outcome===0?'+':'−'}. {singleResults.length} measurement{singleResults.length===1?'':'s'} on this one qubit.</small>
         </div>:<div className="measurement-empty">No measurement yet. Predict what you will observe before clicking.</div>}
         {singleResults.length>0 && <div className="single-log"><strong>Outcome sequence:</strong>{singleResults.slice(-16).map((item,i)=><span key={i} title={item.basis.toUpperCase()+' basis'}>{item.basis.toUpperCase()}:{BASIS_LABELS[item.basis][item.outcome]}</span>)}</div>}
         <button type="button" className="secondary-measure" disabled={busy} onClick={restorePrepared}>Re-prepare this qubit</button>
