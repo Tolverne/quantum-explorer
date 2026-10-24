@@ -45,3 +45,73 @@
 .swatch{display:inline-block;width:11px;height:11px;border-radius:50%;margin-left:5px}
 .swatch.actual{background:#ffd48b}.swatch.goal{background:#65ecd7}
 @media(max-width:700px){.challenge-details{flex-direction:column}.challenge-actions{flex-direction:row;flex-wrap:wrap;flex-basis:auto}.challenge-actions button{flex:1;min-width:110px}.mode-switch{display:flex}.mode-switch button{flex:1}}
+
+
+/* M3: one-qubit measurement and repeated fresh-preparation experiments */
+.measurement-module{margin:0 0 22px}
+.measurement-intro{display:flex;justify-content:space-between;align-items:center;gap:20px;background:#15273d;border:1px solid #335471;border-radius:16px;padding:21px;margin-bottom:20px}
+.measurement-intro h2{font-size:24px;margin:7px 0}
+.measurement-intro p{color:#b8cbe2;line-height:1.55;max-width:740px;margin:8px 0 0}
+.measurement-task{display:flex;flex-direction:column;gap:7px;min-width:220px;max-width:305px;padding:14px 16px;border-radius:10px;background:#1d4243;color:#c5f6e7;font-size:13px;line-height:1.5}
+.measurement-task strong{color:#fff}
+.measurement-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,1fr);gap:20px}
+.measurement-sphere-card,.measurement-panel{background:#121f33;border:1px solid #2b405c;border-radius:16px;overflow:hidden}
+.measurement-right{display:grid;gap:20px}
+.measurement-panel{padding:22px}
+.measurement-panel h3{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:19px}
+.measurement-panel>p{color:#acbfd8;font-size:14px;line-height:1.55}
+.step-number{display:grid;place-items:center;min-width:32px;height:32px;border:1px solid #5aa59c;color:#94e8d3;background:#17403f;border-radius:8px;font-size:13px}
+.preset-buttons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:16px}
+.preset-buttons button{padding:13px 7px;border-radius:9px;border:1px solid #3a5674;background:#243955;color:#e5f1ff;font-size:17px;font-weight:700}
+.preset-buttons button:hover:not(:disabled){background:#335b74}
+.measurement-right .direction-picker{margin:14px 0 8px}
+.measurement-right .axis-choice{margin:10px 0}
+.measurement-sequence{display:flex;align-items:center;gap:6px;flex-wrap:wrap;color:#a9c6df;font-size:12px;margin:16px 0}
+.measurement-sequence strong{color:#f0f6ff}
+.measurement-sequence .gate{font-size:12px;padding:5px 7px}
+.measurement-small-actions{display:flex;gap:7px;flex-wrap:wrap}
+.measurement-small-actions button,.secondary-measure{border:1px solid #416080;background:#263c58;color:#dceaf9;border-radius:8px;font-size:12px;padding:9px 10px}
+.basis-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
+.basis-buttons button{background:#243955;color:#dbe7f8;border-radius:10px;border:2px solid #3c526e;padding:12px;font-size:15px;font-weight:700}
+.basis-buttons button small{display:block;font-weight:400;color:#b6c9df;margin-top:4px}
+.basis-buttons button.selected{border-color:#73d9c7;background:#235f62;color:white}
+.probability-heading{font-size:12px!important;font-weight:700}
+.prediction-bars{display:grid;gap:12px;padding:12px 0}
+.prediction-row{display:grid;grid-template-columns:28px minmax(0,1fr) 60px;gap:9px;align-items:center;font-size:13px}
+.prediction-row>strong{font-variant-numeric:tabular-nums;text-align:right}
+.prediction-track{height:14px;border-radius:5px;overflow:hidden;background:#233850}
+.prediction-track>div{height:100%;background:#66c4c0;transition:width .15s linear}
+.experiment-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:20px}
+.measure-primary{background:#27827a;color:#fff;border:1px solid #4eb9ae;border-radius:10px;padding:11px 14px;font-weight:700}
+.measure-primary:hover:not(:disabled){background:#329b90}
+.last-outcome{display:flex;flex-direction:column;gap:7px;margin:16px 0;background:#1b3749;padding:15px;border-radius:10px}
+.last-outcome>span{color:#abcce0;font-size:12px}
+.last-outcome>strong{font-size:44px;line-height:1.1;color:#f8da94}
+.last-outcome>small{color:#b1c6dc;line-height:1.45}
+.measurement-empty{border:1px dashed #405a78;border-radius:9px;color:#8faec7;padding:18px;margin:14px 0;font-size:13px;line-height:1.5}
+.single-log{display:flex;flex-wrap:wrap;align-items:center;gap:5px;font-size:12px;margin:13px 0}
+.single-log strong{margin-right:4px;color:#aac6de}
+.single-log span{padding:5px 7px;background:#2b475e;border-radius:6px}
+.secondary-measure{margin-top:9px;font-size:13px}
+.measurement-note{font-size:12px!important;color:#9eb7cf!important;line-height:1.5}
+.shot-actions{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:14px 0 19px}
+.shot-actions label{font-size:13px;color:#a9c5db}
+.shot-actions select{background:#273f5b;color:#eff7ff;border:1px solid #4d7394;border-radius:8px;padding:10px}
+.measurement-bars{display:grid;gap:14px;margin:18px 0}
+.measurement-bar-row{display:grid;grid-template-columns:28px minmax(0,1fr) 108px;align-items:center;gap:10px;font-size:13px}
+.measurement-bar-row strong{font-size:14px;text-align:right;font-variant-numeric:tabular-nums}
+.measurement-bar-row strong small{font-size:11px;color:#9eb9d0;font-weight:400}
+.outcome-label{font-weight:700}
+.bar-track{position:relative;height:22px;border-radius:7px;background:#203750;overflow:visible}
+.bar-fill{height:100%;border-radius:7px;background:#59bdb9;transition:width .3s ease}
+.expected-tick{position:absolute;top:-5px;height:32px;width:3px;background:#ffd68d;transform:translateX(-50%);border-radius:2px}
+.chart-legend{display:flex;gap:7px;align-items:center;flex-wrap:wrap;color:#b1cce0;font-size:12px}
+.legend-observed,.legend-expected{display:inline-block;width:10px;height:10px;background:#59bdb9;border-radius:2px;margin-left:5px}
+.legend-expected{background:#ffd68d;width:4px}
+.prediction-preview{display:flex;gap:7px;flex-wrap:wrap;color:#a8c2d8;font-size:12px}
+.prediction-preview strong{color:#b6f5dc}
+.measurement-explainer{padding:17px 20px;margin-top:20px;background:#183638;border:1px solid #376b66;border-radius:12px;color:#c6e9e3}
+.measurement-explainer p{font-size:14px;line-height:1.6;margin:7px 0 0}
+.measurement-panel button:focus-visible,.measurement-panel select:focus-visible{outline:3px solid #f6d88e;outline-offset:2px}
+@media(max-width:950px){.measurement-layout{grid-template-columns:1fr}.measurement-right{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.measurement-intro{flex-direction:column;align-items:stretch}.measurement-task{max-width:none}.measurement-right,.experiment-columns{grid-template-columns:1fr}.measurement-panel{padding:16px}.measurement-bar-row{grid-template-columns:25px minmax(0,1fr) 99px}}
