@@ -4,6 +4,12 @@ import { useMemo, useState } from 'react'
 import * as THREE from 'three'
 import type { Axis, Vector } from '../quantum/bloch'
 
+type CaptureTarget = EventTarget & {
+  setPointerCapture?: (pointerId: number) => void
+  hasPointerCapture?: (pointerId: number) => boolean
+  releasePointerCapture?: (pointerId: number) => void
+}
+
 function Guide({ plane }: { plane: 'xy' | 'xz' | 'yz' }) {
   const line = useMemo(() => {
     const points = Array.from({ length: 129 }, (_, i) => {
@@ -44,14 +50,16 @@ function Axis({ direction, color, axis, active, disabled, onStartHold, onEndHold
   function down(event: ThreeEvent<PointerEvent>) {
     event.stopPropagation()
     if (disabled || event.button !== 0) return
-    event.target.setPointerCapture(event.pointerId)
+    const target = event.target as CaptureTarget | null
+    target?.setPointerCapture?.(event.pointerId)
     onStartHold(axis)
   }
   function up(event: ThreeEvent<PointerEvent>) {
     event.stopPropagation()
     if (active) onEndHold()
-    if (event.target.hasPointerCapture(event.pointerId)) {
-      event.target.releasePointerCapture(event.pointerId)
+    const target = event.target as CaptureTarget | null
+    if (target?.hasPointerCapture?.(event.pointerId)) {
+      target.releasePointerCapture?.(event.pointerId)
     }
   }
   return <>
