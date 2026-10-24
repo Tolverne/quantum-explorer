@@ -115,3 +115,86 @@
 .measurement-panel button:focus-visible,.measurement-panel select:focus-visible{outline:3px solid #f6d88e;outline-offset:2px}
 @media(max-width:950px){.measurement-layout{grid-template-columns:1fr}.measurement-right{grid-template-columns:1fr 1fr}}
 @media(max-width:720px){.measurement-intro{flex-direction:column;align-items:stretch}.measurement-task{max-width:none}.measurement-right,.experiment-columns{grid-template-columns:1fr}.measurement-panel{padding:16px}.measurement-bar-row{grid-template-columns:25px minmax(0,1fr) 99px}}
+
+
+/* M4 — two-qubit entanglement investigations */
+.mode-switch{flex-wrap:wrap}
+.entanglement-lab{display:grid;gap:18px;margin-bottom:24px}
+.entanglement-intro,.pair-panel,.pair-sphere-card{background:#121f33;border:1px solid #2b405c;border-radius:16px;padding:20px}
+.entanglement-intro{background:#162a3e}
+.entanglement-intro h2{font-size:23px;margin:9px 0}
+.entanglement-intro p{color:#b9cde5;line-height:1.55;max-width:900px;margin:6px 0 16px}
+.investigation-prompt{padding:12px 15px;border-left:3px solid #81dfd0;border-radius:6px;background:#1b4143;color:#cef2e9;font-size:14px;line-height:1.5}
+.pair-section-title{display:flex;gap:12px;align-items:start;margin-bottom:16px}
+.pair-section-title h3{margin:2px 0 5px;font-size:19px}
+.pair-section-title p{margin:0;color:#acc4dc;font-size:13px;line-height:1.5}
+.pair-step{flex-shrink:0;display:grid;place-items:center;min-width:35px;height:35px;border:1px solid #52b7a6;background:#173d42;border-radius:10px;color:#b2f0e0;font-weight:800}
+.pair-presets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.pair-presets button{display:flex;flex-direction:column;text-align:left;gap:8px;padding:14px;border:1px solid #3b5772;border-radius:11px;background:#1b3149;color:#e3efff;min-height:115px}
+.pair-presets button.selected{border:2px solid #7fddcc;background:#235052;padding:13px}
+.pair-presets button small{font-size:12px;line-height:1.5;color:#b3c8db}
+.pair-prep-description{margin:17px 0 8px;color:#c3d8ec;font-size:13px}
+.pair-gate-circuit{min-height:60px;border:1px solid #324d66;border-radius:10px;padding:15px;background:#162c41}
+.pair-gate-circuit p{margin:0;color:#b6c9df;font-size:13px;line-height:1.5}
+.circuit-diagram{position:relative;width:min(430px,100%);display:grid;gap:6px}
+.circuit-row{display:flex;gap:0;align-items:center;height:33px}
+.circuit-row span{width:69px;flex:0 0 69px;color:#c8d9eb;font-size:12px}
+.circuit-row i{height:2px;width:25px;background:#86a8bc;flex:1 1 25px}
+.circuit-row i.empty-step{min-width:34px;flex:0 0 34px}
+.circuit-row b{width:34px;height:32px;display:grid;place-items:center;background:#346b75;border:1px solid #8ddbd0;border-radius:6px;color:#fff;font-style:normal}
+.circuit-row b.control-node{background:transparent;border:0;color:#9be4ce;font-size:25px}
+.circuit-row b.cnot-target{background:transparent;border:0;font-size:35px;color:#9be4ce}
+.cnot-vertical{position:absolute;width:2px;height:29px;background:#9be4ce;left:calc(69px + (100% - 69px) * .57);top:32px;pointer-events:none;opacity:.6}
+.pair-display{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.pair-sphere-card{padding:0;overflow:hidden}
+.pair-sphere-heading{padding:14px 17px;display:flex;justify-content:space-between;gap:10px;color:#e1efff}
+.pair-sphere-heading span{font-size:12px;color:#a5bfd9}
+.pair-sphere-visual{height:290px}
+.pair-sphere-note{padding:12px 17px;font-size:12px;color:#b5c9df;min-height:49px;background:#172a40;line-height:1.45}
+.pair-explanation{padding:12px 17px;border:1px solid #356366;border-radius:10px;background:#16363a;color:#c7eae8;font-size:13px;line-height:1.55}
+.pair-bases{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pair-bases>div{display:grid;gap:9px}
+.pair-bases strong{color:#dce9f8}
+.pair-basis-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pair-basis-buttons button{padding:11px 10px;background:#233951;border:2px solid #3a5773;border-radius:9px;color:#ebf5ff;font-weight:700}
+.pair-basis-buttons button.selected{border-color:#7bddd2;background:#286366}
+.pair-basis-buttons button small{font-size:12px;font-weight:400;margin-left:6px;color:#c6d9e6}
+.pair-experiments{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.pair-single-results{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:17px 0}
+.pair-person{border:1px solid #3c5a77;background:#1a3249;border-radius:11px;padding:16px;display:grid;gap:8px;text-align:center}
+.pair-person span{font-size:13px;color:#bdd4e7}
+.pair-person strong{font-size:45px;color:#f6d591}
+.pair-action-buttons{display:flex;gap:8px;flex-wrap:wrap}
+.pair-action-buttons button,.pair-batch-controls button{padding:10px 12px;border-radius:9px;border:1px solid #4c6986;background:#2a405a;color:#e9f5ff;font-weight:700}
+.pair-action-buttons .pair-primary,.pair-batch-controls .pair-primary{background:#287f78;border-color:#4bbdb1}
+.pair-feedback{padding:11px 13px;background:#1d4545;border-radius:8px;font-size:13px;line-height:1.5;color:#d0f1e4}
+.pair-footnote{font-size:12px;color:#adc4dc;line-height:1.55}
+.pair-batch-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:15px 0}
+.pair-batch-controls label{font-size:13px;color:#b3c9de}
+.pair-batch-controls select{border:1px solid #48647c;border-radius:8px;color:#e8f7ff;background:#22394f;padding:9px}
+.pair-histogram{display:grid;gap:10px;margin:17px 0}
+.pair-hist-row{display:grid;grid-template-columns:30px minmax(0,1fr) 91px;gap:9px;align-items:center;font-size:13px}
+.pair-hist-row>strong{font-weight:700;font-size:16px}
+.pair-hist-row>span{text-align:right;font-variant-numeric:tabular-nums;color:#c8daec}
+.pair-hist-track{height:20px;border-radius:6px;background:#203a54;position:relative}
+.pair-hist-fill{background:#58beb6;height:100%;border-radius:6px;transition:width .2s ease}
+.pair-hist-marker{height:30px;width:3px;background:#ffdb8e;top:-5px;position:absolute;transform:translateX(-50%);border-radius:3px}
+.pair-legend{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:12px;color:#b9cadf}
+.pair-key{width:12px;height:10px;border-radius:2px;display:inline-block}
+.pair-key.observed{background:#58beb6}.pair-key.predicted{width:4px;background:#ffdb8e;margin-left:6px}
+.correlation-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.correlation-grid>div{padding:16px;border:1px solid #3a5873;background:#1d3249;border-radius:10px;display:flex;flex-direction:column;gap:8px}
+.correlation-grid span{font-size:13px;color:#bed0e1}
+.correlation-grid strong{font-size:23px;color:#b7f1e2}
+.correlation-grid small{font-size:12px;color:#a1bbd3}
+.correlation-score{display:grid;gap:9px;padding:16px;background:#1d4142;border:1px solid #4b958e;border-radius:10px;color:#d8f7ea;margin:17px 0}
+.correlation-score strong{font-size:18px}
+.correlation-score span{font-size:13px;line-height:1.6}
+.correlation-score small{font-size:12px;line-height:1.5;color:#c8dddc}
+.teacher-toggle{padding:10px 14px;border:1px solid #47758a;border-radius:9px;background:#243b52;color:#e5f0fc;margin-top:5px}
+.deeper-physics{background:#1d3045;border:1px solid #3b5470;border-radius:9px;padding:8px 15px;margin-top:12px}
+.deeper-physics p{font-size:13px;color:#c2d5e7;line-height:1.6}
+.pair-disclaimer{font-size:12px;color:#a7c1d3;line-height:1.5}
+.entanglement-lab button:focus-visible{outline:3px solid #f8d487;outline-offset:2px}
+@media(max-width:900px){.pair-presets{grid-template-columns:1fr 1fr}.pair-experiments{grid-template-columns:1fr}}
+@media(max-width:640px){.pair-display,.pair-bases,.correlation-grid{grid-template-columns:1fr}.pair-presets{grid-template-columns:1fr 1fr}.pair-presets button{min-height:110px}.pair-sphere-visual{height:290px}.circuit-diagram{width:100%}}

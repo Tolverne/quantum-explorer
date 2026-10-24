@@ -33,6 +33,20 @@ Select the **Measurement lab** tab to explore the crucial distinction between a 
 
 The measurement engine is in [src/quantum/measurement.ts](src/quantum/measurement.ts) with deterministic unit tests for probability, X/Z basis changes, state collapse and independent preparations. **No hardware is contacted**; this is an ideal single-qubit simulator, not a quantum computer. The deeper interpretation of the measurement problem is not resolved by this model.
 
+## M4 — Entanglement laboratory
+Select **Entanglement lab** to explore the difference between ordinary randomness, classical correlations, and an entangled two-qubit state.
+
+- Four preparations: independent |+⟩|+⟩, a genuine classical 00/11 mixture, Bell Φ+, and Bell Φ−.
+- Two separate Bloch spheres show each qubit's *reduced* state. The centre dot represents a maximally mixed local state for Bell pairs, rather than pretending each qubit has its own pure Bloch arrow.
+- Choose X or Z basis for Alice and Bob independently. Measure Alice first and see Bob's **conditional** state, then measure Bob.
+- Generate 10, 100 or 1,000 fresh-pair shots and compare joint outcome histograms (00,01,10,11 or +/− equivalents) with Born-rule probabilities.
+- Compare ZZ and XX correlations. A classical 00/11 mixture and Bell Φ+ both agree in ZZ, but only Bell Φ+ agrees perfectly in XX. Bell Φ− has opposite XX outcomes.
+- Optional extension: two-basis entanglement witness ⟨ZZ⟩+⟨XX⟩ ≤ 1 for separable states. The app labels finite-shot measurements as indicative rather than conclusive.
+
+The [M4 teacher guide](docs/m4-entanglement-classroom-guide.md) includes timed investigations, predictions, mathematical details and important caveats about no-signalling.
+
+**Physics scope:** two-qubit 4×4 real density matrices with correct mixture handling, H/CNOT Bell preparation, partial traces and X/Z projective measurements. This is an ideal **browser simulator** and does not access NQCT hardware. Complex-amplitude Y-basis operations are outside M4's scope.
+
 ## Run locally
 
 Node.js 20+ recommended:
@@ -58,4 +72,4 @@ All state simulation and challenge scoring run in the browser: no server API, si
 See [M2 classroom guide](docs/m2-classroom-guide.md) for suggestions on investigation flow, student predictions, what to discuss and what the challenges do and do not show.
 
 ## Roadmap
-M1 rotations ✓ → M2 target challenges ✓ → M3 measurement ✓ → M4 entanglement → M5 complete curriculum → M6 offline distribution.
+M1 rotations ✓ → M2 target challenges ✓ → M3 measurement ✓ → M4 entanglement ✓ → M5 complete curriculum → M6 offline distribution.
