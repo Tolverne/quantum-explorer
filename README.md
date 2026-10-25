@@ -78,7 +78,7 @@ To use in a classroom:
 2. Disconnect from the internet if you wish to verify offline operation.
 3. Double-click the saved \`quantum-explorer-offline.html\`. It runs locally in Chrome, Edge or a WebGL-capable browser.
 4. Open Guided Lessons to use all three lessons. Use **Print student workbook** / **Print teacher guide** to open the embedded printable resources from the same file.
-5. Students should **Download my journal** before closing or refreshing the browser tab. Their answers are saved automatically in IndexedDB when available, but are not synced between devices or browsers. Students should still export a journal before final submission.
+5. Students' answers are automatically saved in IndexedDB when available, including across browser restarts. They should **Download my journal** before submitting through Teams or another school platform. Saved work is not synced between devices or browsers.
 
 The HTML file is deliberately larger than the hosted edition because it contains everything, including the full 3D simulator. It is a single file, not a ZIP or installer. It does not contain nor require student data.
 
