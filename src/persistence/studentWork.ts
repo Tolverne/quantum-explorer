@@ -63,7 +63,7 @@ export function createStudentWorkStorage(
   function open(): Promise<IDBDatabase> {
     if (!factory) return Promise.reject(new Error('IndexedDB is unavailable'))
     if (!connection) {
-      connection = new Promise((resolve, reject) => {
+      connection = new Promise<IDBDatabase>((resolve, reject) => {
         const request = factory.open(name, SCHEMA_VERSION)
         request.onupgradeneeded = () => {
           const db = request.result
@@ -81,7 +81,7 @@ export function createStudentWorkStorage(
         throw error
       })
     }
-    return connection
+    return connection!
   }
   return {
     async load() {
