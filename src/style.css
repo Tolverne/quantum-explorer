@@ -281,3 +281,18 @@
 @media(max-width:1050px){.guide-inquiry-grid{grid-template-columns:1fr 1fr}.guide-inquiry-grid>.guide-stage:last-child{grid-column:1/-1}}
 @media(max-width:800px){.course-cards{grid-template-columns:1fr}.course-lesson-card{min-height:250px}.guide-inquiry-grid{grid-template-columns:1fr}.guide-inquiry-grid>.guide-stage:last-child{grid-column:auto}}
 @media(max-width:600px){.course-stats{gap:16px}.course-hero{padding:19px}.course-guide-top{padding:12px}.guided-work{padding:14px}.guide-step-nav{grid-template-columns:1fr 1fr;padding:8px 14px}.course-guide-heading{padding:16px}.course-guide-heading h2{font-size:20px}.guide-controls>div{width:100%}.guide-controls button{flex:1}}
+
+/* M6 — distribution and printable offline learning resources */
+.course-resource-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.course-resource-links a,.course-resource-links button{
+  display:inline-flex;align-items:center;justify-content:center;background:#264257;
+  color:#dcf4ff;border:1px solid #56939b;border-radius:8px;
+  padding:10px 12px;font:inherit;font-size:13px;text-decoration:none;cursor:pointer
+}
+.course-resource-links a:hover,.course-resource-links button:hover{background:#31576d}
+.offline-download-panel{margin-top:20px;padding:16px 18px;border:1px solid #65b9ae;border-radius:11px;background:#173c42}
+.offline-download-panel>strong{color:#e2fbf4;font-size:16px}
+.offline-download-panel p{font-size:13px;color:#c1e2df;line-height:1.5;margin:8px 0 13px}
+.course-offline-download{display:inline-block;background:#e6c17c;color:#12283b;text-decoration:none;font-weight:800;border-radius:9px;padding:11px 15px;font-size:13px}
+.course-offline-download:hover{background:#f2d396}
+.offline-info{font-size:13px;color:#bbf4d7;background:#183c39;padding:12px;border-radius:9px}
