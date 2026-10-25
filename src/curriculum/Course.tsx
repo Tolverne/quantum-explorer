@@ -22,6 +22,7 @@ export function CourseHome({entries,onStart,onExport}:{
    </div>
    <p className="course-privacy">No account required. Answers stay in this open browser tab; refreshing the page clears them. Export your journal before leaving.</p>
    <button type="button" className="course-export" onClick={onExport}>Download my journal (.md)</button>
+   <div className="course-resource-links"><a href="./resources/student-workbook.html" target="_blank" rel="noopener noreferrer">Printable student workbook</a><a href="./resources/teacher-guide.html" target="_blank" rel="noopener noreferrer">Teacher lesson guide</a></div>
   </section>
   <div className="course-cards">
    {LESSONS.map(l=><article className="course-lesson-card" key={l.id}>
