@@ -198,3 +198,86 @@
 .entanglement-lab button:focus-visible{outline:3px solid #f8d487;outline-offset:2px}
 @media(max-width:900px){.pair-presets{grid-template-columns:1fr 1fr}.pair-experiments{grid-template-columns:1fr}}
 @media(max-width:640px){.pair-display,.pair-bases,.correlation-grid{grid-template-columns:1fr}.pair-presets{grid-template-columns:1fr 1fr}.pair-presets button{min-height:110px}.pair-sphere-visual{height:290px}.circuit-diagram{width:100%}}
+
+
+/* M5 — three-lesson standalone learning module */
+.course-home,.course-guide{margin-bottom:20px}
+.course-hero{border-radius:17px;background:linear-gradient(115deg,#173b46,#15263f 62%);border:1px solid #3a6573;padding:26px}
+.course-hero h2{font-size:30px;margin:8px 0 10px}
+.course-hero>p{max-width:750px;line-height:1.6;color:#c2d5e8;font-size:14px}
+.course-stats{display:flex;gap:36px;margin:22px 0;flex-wrap:wrap}
+.course-stats>div{display:grid;gap:5px}
+.course-stats strong{font-size:24px;color:#d7fcf0}
+.course-stats span{color:#b9cada;font-size:12px}
+.course-privacy{border-left:3px solid #90dcce;padding:8px 12px;background:#193e46;border-radius:5px}
+.course-export,.guide-export{padding:11px 15px;border:1px solid #65bdb3;border-radius:9px;background:#26746d;color:white;font-weight:700}
+.course-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0}
+.course-lesson-card{display:flex;flex-direction:column;background:#14253a;border:1px solid #35516b;border-radius:15px;padding:22px;min-height:310px}
+.course-card-meta{display:flex;justify-content:space-between;gap:12px;color:#80dacc;font-size:12px;font-weight:700}
+.course-card-meta span:last-child{color:#a5bdd5}
+.course-lesson-card h3{font-size:23px;margin:18px 0 6px}
+.course-lesson-card p{font-size:14px;color:#b6cade;line-height:1.5}
+.course-lesson-card .course-subtitle{color:#8fe8d8;margin:0;font-weight:650}
+.course-card-progress{margin-top:auto;margin-bottom:16px}
+.course-card-progress span{display:block;font-size:12px;color:#adc4d9;margin-top:6px}
+.course-progress-track{height:8px;background:#2b4158;overflow:hidden;border-radius:10px}
+.course-progress-track>div{height:100%;background:#67cab7;transition:width .2s}
+.course-lesson-card>button{padding:13px;border:1px solid #4eab9e;border-radius:10px;background:#287b75;color:#fff;font-weight:700}
+.course-resource-panel{border:1px solid #375371;border-radius:14px;background:#15263c;padding:22px}
+.course-resource-panel h3{margin:0;font-size:20px}
+.course-resource-panel p,.course-resource-panel li{font-size:14px;color:#bbccdf;line-height:1.6}
+.course-resource-panel summary{cursor:pointer;color:#bef3e4;padding:10px 0}
+.course-teacher-lesson{background:#1c334b;padding:12px 15px;border-radius:9px;margin:10px 0}
+.course-teacher-lesson h4{margin:3px 0}
+.course-resource-panel .course-small-note{font-size:12px}
+.course-guide{background:#14263b;border:1px solid #386077;border-radius:16px;overflow:hidden}
+.course-guide-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:15px 21px;background:#183a48}
+.guide-back{background:transparent;border:0;color:#aff1e2;padding:8px 0;font-weight:700}
+.guide-export{padding:8px 11px;font-size:12px}
+.course-guide-heading{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:20px 23px 12px}
+.course-guide-heading h2{margin:0 0 8px;font-size:23px}
+.course-guide-heading p{font-size:14px;color:#b9cee2;margin:0;line-height:1.5}
+.course-guide-heading>span{font-size:13px;color:#a5d9cb;white-space:nowrap}
+.guide-step-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;padding:8px 23px 17px}
+.guide-step-nav button{background:#1d354b;border:1px solid #3d5e77;border-radius:10px;padding:10px 8px;color:#d3e1f0;font-weight:700;min-height:63px;text-align:left}
+.guide-step-nav button span{font-size:11px;color:#a3bed6;display:block;font-weight:400;margin-top:5px}
+.guide-step-nav button.active{background:#25575d;border:2px solid #83e2d0;padding:9px 7px}
+.guide-step-nav button.finished{color:#9ff1c6}
+.guided-work{padding:22px;border-top:1px solid #34556e}
+.guide-heading-row{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:16px}
+.guide-heading-row h3{font-size:22px;margin:6px 0}
+.guide-complete-label{border:1px solid #4e9e8d;padding:6px 10px;color:#b0efd0;border-radius:999px;font-size:12px}
+.guide-inquiry-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.guide-stage{border:1px solid #3c5471;border-radius:12px;padding:17px;background:#172d44;display:flex;flex-direction:column;min-width:0}
+.guide-stage h4{display:flex;align-items:center;gap:9px;font-size:17px;margin:0 0 10px}
+.guide-stage h4>span{display:grid;place-items:center;width:30px;height:30px;border:1px solid #70bdb0;border-radius:50%;background:#244a53;color:#ddfbf0;font-size:14px}
+.guide-stage>p{font-size:13px;line-height:1.6;color:#d0dfed;margin:0 0 12px}
+.guide-predictions{border:0;padding:0;margin:0;display:grid;gap:8px;min-width:0}
+.guide-predictions label{display:flex;align-items:flex-start;gap:10px;border:1px solid #39546d;border-radius:9px;padding:10px 9px;background:#21374f;font-size:13px;color:#dbe7f3;cursor:pointer;line-height:1.45}
+.guide-predictions label.chosen{border-color:#76d4c5;background:#25535a}
+.guide-predictions input{margin-top:3px;accent-color:#72dbcb;flex-shrink:0}
+.guide-small{font-size:12px;color:#a7c2d6;line-height:1.5}
+.guide-stage .guide-small{margin-top:12px}
+.guide-lab-link{border:1px solid #64b5a8;border-radius:9px;background:#287e76;color:white;padding:11px;font-weight:700;margin-bottom:19px}
+.guide-stage>label:not(.chosen){color:#c7d6e6;font-size:13px;font-weight:650;margin-bottom:8px}
+.guide-stage textarea{background:#102239;color:#f1f7ff;border:1px solid #48637e;border-radius:9px;padding:10px 11px;resize:vertical;min-height:86px;width:100%;font:inherit;font-size:13px;line-height:1.5}
+.guide-stage textarea::placeholder{color:#859db5}
+.guide-explain{background:#233d58;color:#dceaf9;border:1px solid #587993;border-radius:9px;padding:10px 12px;margin-top:13px;font-weight:650}
+.guide-science{padding:13px;background:#21464b;border:1px solid #448278;border-radius:9px;margin-top:10px;color:#dbf2e9}
+.guide-science strong{font-size:13px}
+.guide-science p{font-size:12px;line-height:1.55}
+.guide-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px}
+.guide-controls>div{display:flex;gap:8px;flex-wrap:wrap}
+.guide-controls button{padding:10px 13px;border:1px solid #4d6882;background:#263f58;color:#eff8ff;border-radius:9px;font-weight:650}
+.guide-controls .guide-complete{background:#247971;border-color:#55b7a6}
+.guide-controls .guide-next{background:#294d70;border-color:#648ab3}
+.guide-controls button:disabled{opacity:.42;cursor:not-allowed}
+.guide-teacher-details{border-top:1px solid #35526b;padding-top:13px;margin-top:17px}
+.guide-teacher-details summary{cursor:pointer;color:#bfe8e6;font-size:13px;font-weight:650}
+.guide-teacher-details p{font-size:13px;color:#c1d5e3;line-height:1.55}
+.guide-underlab{font-size:12px;color:#b0c9dc;margin:0;padding:12px 22px 18px;background:#182f43}
+.course-home button:focus-visible,.course-guide button:focus-visible,.course-guide textarea:focus-visible{outline:3px solid #ffda96;outline-offset:2px}
+.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:1050px){.guide-inquiry-grid{grid-template-columns:1fr 1fr}.guide-inquiry-grid>.guide-stage:last-child{grid-column:1/-1}}
+@media(max-width:800px){.course-cards{grid-template-columns:1fr}.course-lesson-card{min-height:250px}.guide-inquiry-grid{grid-template-columns:1fr}.guide-inquiry-grid>.guide-stage:last-child{grid-column:auto}}
+@media(max-width:600px){.course-stats{gap:16px}.course-hero{padding:19px}.course-guide-top{padding:12px}.guided-work{padding:14px}.guide-step-nav{grid-template-columns:1fr 1fr;padding:8px 14px}.course-guide-heading{padding:16px}.course-guide-heading h2{font-size:20px}.guide-controls>div{width:100%}.guide-controls button{flex:1}}
