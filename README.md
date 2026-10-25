@@ -47,6 +47,25 @@ The [M4 teacher guide](docs/m4-entanglement-classroom-guide.md) includes timed i
 
 **Physics scope:** two-qubit 4×4 real density matrices with correct mixture handling, H/CNOT Bell preparation, partial traces and X/Z projective measurements. This is an ideal **browser simulator** and does not access NQCT hardware. Complex-amplitude Y-basis operations are outside M4's scope.
 
+## M5 — Standalone guided teaching module
+The app now opens on a **Guided Lessons** dashboard with three complete ~60-minute lessons (12 student investigations). Each activity follows **Predict → Experiment → Explain**, with the relevant physics lab directly below the lesson prompts. Activities provide self-checking scientific explanations, optional teacher notes, estimated timings and recorded progress. Students can also switch to the original unguided labs.
+
+- **Lesson 1:** What is a qubit? Bloch-sphere poles, superpositions, axis rotations and pulse-order challenge.
+- **Lesson 2:** What is measurement? Prediction vs outcome, collapse, fresh shots and choice of measurement basis.
+- **Lesson 3:** What is entanglement? Independent pairs, classically correlated pairs and Bell-state measurements in X/Z.
+
+**No student account, personal identifiers or backend are required.** Answers are only held in current-tab memory and disappear after refreshing. The **Download my journal** button exports an anonymous Markdown file to the student's device; students can print or submit that file through normal school processes.
+
+Printable resource pages (open in a browser and print/save using the browser print command):
+- [Student workbook](public/resources/student-workbook.html)
+- [Teacher guide with timing, answers and misconceptions](public/resources/teacher-guide.html)
+
+On GitHub Pages, these are also available directly at:
+- https://tolverne.github.io/quantum-explorer/resources/student-workbook.html
+- https://tolverne.github.io/quantum-explorer/resources/teacher-guide.html
+
+The teacher resources are public, not password-protected. There is no tracking or login. The app is a static web learning module; packaging as a **single offline classroom HTML file** is reserved for M6.
+
 ## Run locally
 
 Node.js 20+ recommended:
@@ -72,4 +91,4 @@ All state simulation and challenge scoring run in the browser: no server API, si
 See [M2 classroom guide](docs/m2-classroom-guide.md) for suggestions on investigation flow, student predictions, what to discuss and what the challenges do and do not show.
 
 ## Roadmap
-M1 rotations ✓ → M2 target challenges ✓ → M3 measurement ✓ → M4 entanglement ✓ → M5 complete curriculum → M6 offline distribution.
+M1 rotations ✓ → M2 target challenges ✓ → M3 measurement ✓ → M4 entanglement ✓ → M5 complete curriculum ✓ → M6 offline distribution.
