@@ -66,6 +66,38 @@ On GitHub Pages, these are also available directly at:
 
 The teacher resources are public, not password-protected. There is no tracking or login. The app is a static web learning module; packaging as a **single offline classroom HTML file** is reserved for M6.
 
+## M6 — Single-file offline classroom edition
+
+Quantum Explorer remains a normal hosted website at **https://tolverne.github.io/quantum-explorer/**. It also offers a **Download offline edition (.html)** link on the Guided Lessons home page. The offline file contains the same three guided lessons and all four laboratories, their simulations, their CSS/JavaScript and both printable resources. It opens directly in a modern browser with no network, account, server or installation.
+
+**Public download (after M6 is merged and Pages deployment succeeds):**
+https://tolverne.github.io/quantum-explorer/downloads/quantum-explorer-offline.html
+
+To use in a classroom:
+1. While online, visit the site and choose **Download offline edition (.html)**. Save the file somewhere students can reach, such as a school network share, a USB drive, or an LMS download.
+2. Disconnect from the internet if you wish to verify offline operation.
+3. Double-click the saved \`quantum-explorer-offline.html\`. It runs locally in Chrome, Edge or a WebGL-capable browser.
+4. Open Guided Lessons to use all three lessons. Use **Print student workbook** / **Print teacher guide** to open the embedded printable resources from the same file.
+5. Students should **Download my journal** before closing or refreshing the browser tab. Their notes are intentionally only stored in current-tab memory; no accounts or cloud storage are used.
+
+The HTML file is deliberately larger than the hosted edition because it contains everything, including the full 3D simulator. It is a single file, not a ZIP or installer. It does not contain nor require student data.
+
+### Maintainer build commands
+
+\`\`\`sh
+npm install
+npm test
+npm run build            # unchanged normal website in dist/
+npm run build:offline    # one HTML file in dist-offline/
+npm run build:release    # website + validated offline file in dist/downloads/
+\`\`\`
+
+The release build runs \`scripts/verify-offline.mjs\`, which rejects external JavaScript/CSS/preload references, online font references and missing embedded teaching documents. The live site's GitHub Pages pipeline runs the release build automatically, and PR CI also uploads the offline HTML as a review artifact.
+
+The 3D sphere labels use local browser canvas textures rather than the previous remotely hosted 3D font. The offline resources are embedded within the generated HTML and can be opened through browser print views even with no network connection.
+
+**Compatibility and limitations:** Requires a modern desktop/mobile browser with WebGL enabled. Some managed school devices prohibit locally opened HTML or WebGL and may need local IT approval. Pop-up blockers may prevent the embedded print view; the app offers a printable HTML download as a fallback. No web-hosting account is required to run a file locally. The offline version intentionally does not receive automatic updates; download a newer edition after future releases. 
+
 ## Run locally
 
 Node.js 20+ recommended:
@@ -91,4 +123,4 @@ All state simulation and challenge scoring run in the browser: no server API, si
 See [M2 classroom guide](docs/m2-classroom-guide.md) for suggestions on investigation flow, student predictions, what to discuss and what the challenges do and do not show.
 
 ## Roadmap
-M1 rotations ✓ → M2 target challenges ✓ → M3 measurement ✓ → M4 entanglement ✓ → M5 complete curriculum ✓ → M6 offline distribution.
+M1 rotations ✓ → M2 target challenges ✓ → M3 measurement ✓ → M4 entanglement ✓ → M5 complete curriculum ✓ → M6 offline distribution ✓.

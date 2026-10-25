@@ -6,6 +6,35 @@ import {
 
 type Entries=Readonly<Record<string,StudentEntry>>
 const totals=LESSONS.reduce((n,l)=>n+l.activities.length,0)
+
+const offlineMode = import.meta.env.VITE_OFFLINE_MODE === 'true'
+
+type ResourceKey = 'student' | 'teacher'
+function openEmbeddedPrintable(which: ResourceKey) {
+ const json=document.getElementById('quantum-printables')?.textContent
+ if(!json) return
+ const resources=JSON.parse(json) as Record<ResourceKey,string>
+ const content=resources[which]
+ if(!content) return
+ // Only user-triggered, pre-packaged trusted curriculum HTML is displayed.
+ const tab=window.open('','_blank')
+ if(tab){
+   tab.document.open()
+   tab.document.write(content)
+   tab.document.close()
+ } else {
+   // Some school browsers disable pop-ups: save a standalone printable copy.
+   const url=URL.createObjectURL(new Blob([content],{type:'text/html;charset=utf-8'}))
+   const link=document.createElement('a')
+   link.href=url
+   link.download=which==='student'?'quantum-explorer-student-workbook.html':'quantum-explorer-teacher-guide.html'
+   document.body.appendChild(link)
+   link.click()
+   link.remove()
+   window.setTimeout(()=>URL.revokeObjectURL(url),1000)
+ }
+}
+
 export function CourseHome({entries,onStart,onExport}:{
  entries:Entries;onStart:(id:LessonId)=>void;onExport:()=>void
 }){
@@ -22,7 +51,22 @@ export function CourseHome({entries,onStart,onExport}:{
    </div>
    <p className="course-privacy">No account required. Answers stay in this open browser tab; refreshing the page clears them. Export your journal before leaving.</p>
    <button type="button" className="course-export" onClick={onExport}>Download my journal (.md)</button>
-   <div className="course-resource-links"><a href="./resources/student-workbook.html" target="_blank" rel="noopener noreferrer">Printable student workbook</a><a href="./resources/teacher-guide.html" target="_blank" rel="noopener noreferrer">Teacher lesson guide</a></div>
+   <div className="course-resource-links">
+     {offlineMode ? <>
+       <button type="button" onClick={()=>openEmbeddedPrintable('student')}>Print student workbook</button>
+       <button type="button" onClick={()=>openEmbeddedPrintable('teacher')}>Print teacher guide</button>
+     </> : <>
+       <a href="./resources/student-workbook.html" target="_blank" rel="noopener noreferrer">Printable student workbook</a>
+       <a href="./resources/teacher-guide.html" target="_blank" rel="noopener noreferrer">Teacher lesson guide</a>
+     </>}
+   </div>
+   {!offlineMode&&<div className="offline-download-panel">
+     <strong>Teach without internet</strong>
+     <p>Download the complete Quantum Explorer course as a single HTML file. Open the downloaded file in a browser—no installation, accounts or internet connection required.</p>
+     <a className="course-offline-download" href="./downloads/quantum-explorer-offline.html"
+       download="quantum-explorer-offline.html">Download offline edition (.html)</a>
+   </div>}
+   {offlineMode&&<p className="offline-info">Offline edition · All simulations and printable resources are contained in this file. No internet or student login is needed.</p>}
   </section>
   <div className="course-cards">
    {LESSONS.map(l=><article className="course-lesson-card" key={l.id}>

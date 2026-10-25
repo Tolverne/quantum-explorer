@@ -1,5 +1,6 @@
 import { Canvas, ThreeEvent } from '@react-three/fiber'
-import { Billboard, OrbitControls, Text } from '@react-three/drei'
+import { Billboard, OrbitControls } from '@react-three/drei'
+import { CanvasLabel } from './CanvasLabel'
 import { useMemo, useState } from 'react'
 import * as THREE from 'three'
 import type { Axis, Vector } from '../quantum/bloch'
@@ -77,18 +78,16 @@ function Axis({ direction, color, axis, active, disabled, onStartHold, onEndHold
           <planeGeometry args={[0.64,0.64]}/>
           <meshBasicMaterial transparent opacity={0} depthWrite={false}/>
         </mesh>
-        <Text
-          position={[0,0,0.012]}
-          fontSize={0.27}
-          fontWeight={700}
-          color={disabled && !active ? '#60748d' : active ? '#fff4aa' : hovered ? '#ffffff' : color}
-          outlineColor={active ? '#ff9c38' : color}
-          outlineWidth={active ? 0.035 : hovered && !disabled ? 0.022 : 0}
-          anchorX="center"
-          anchorY="middle"
-        >
-          {axis.toUpperCase()}
-        </Text>
+        <group position={[0,0,0.013]}>
+          <CanvasLabel
+            text={axis.toUpperCase()}
+            color={disabled && !active ? '#60748d' : active ? '#fff4aa' : hovered ? '#ffffff' : color}
+            outlineColor={active ? '#ff9c38' : color}
+            glow={active || (hovered && !disabled)}
+            width={0.53}
+            height={0.36}
+          />
+        </group>
       </group>
     </Billboard>
   </>
@@ -158,8 +157,8 @@ export default function Sphere({ state, target, allowedAxes, heldAxis, onStartHo
     <Axis direction={[1,0,0]} color="#ef8a79" axis="x" active={heldAxis==='x'} disabled={busy || axesDisabled || !allowedAxes.includes('x')} onStartHold={onStartHold} onEndHold={onEndHold}/>
     <Axis direction={[0,1,0]} color="#78dbba" axis="y" active={heldAxis==='y'} disabled={busy || axesDisabled || !allowedAxes.includes('y')} onStartHold={onStartHold} onEndHold={onEndHold}/>
     <Axis direction={[0,0,1]} color="#86aafa" axis="z" active={heldAxis==='z'} disabled={busy || axesDisabled || !allowedAxes.includes('z')} onStartHold={onStartHold} onEndHold={onEndHold}/>
-    <Text position={[0.25,0,1.2]} fontSize={0.18} color="white">|0⟩</Text>
-    <Text position={[0.25,0,-1.2]} fontSize={0.18} color="white">|1⟩</Text>
+    <group position={[0.25,0,1.2]}><CanvasLabel text="|0⟩" width={0.38} height={0.24} billboard/></group>
+    <group position={[0.25,0,-1.2]}><CanvasLabel text="|1⟩" width={0.38} height={0.24} billboard/></group>
     {target && <TargetArrow target={target}/>}
     {Math.hypot(...state) < 1e-5 ? <mesh>
       <sphereGeometry args={[0.13,24,16]}/>
