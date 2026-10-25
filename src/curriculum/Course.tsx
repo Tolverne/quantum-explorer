@@ -4,6 +4,8 @@ import {
  type Lesson,type LessonId,type LabMode,type StudentEntry
 } from './lessons'
 
+import type { SaveStatus } from '../persistence/useStudentWork'
+
 type Entries=Readonly<Record<string,StudentEntry>>
 const totals=LESSONS.reduce((n,l)=>n+l.activities.length,0)
 
@@ -35,8 +37,8 @@ function openEmbeddedPrintable(which: ResourceKey) {
  }
 }
 
-export function CourseHome({entries,onStart,onExport}:{
- entries:Entries;onStart:(id:LessonId)=>void;onExport:()=>void
+export function CourseHome({entries,saveStatus,onStart,onExport,onClear}:{
+ entries:Entries;saveStatus:SaveStatus;onStart:(id:LessonId)=>void;onExport:()=>void;onClear:()=>void
 }){
  const allCompleted=LESSONS.reduce((n,l)=>n+completedCount(l,entries),0)
  return <div className="course-home">
@@ -47,10 +49,19 @@ export function CourseHome({entries,onStart,onExport}:{
    <div className="course-stats">
     <div><strong>3</strong><span>60-minute lessons</span></div>
     <div><strong>12</strong><span>guided investigations</span></div>
-    <div><strong>{allCompleted} / {totals}</strong><span>recorded this session</span></div>
+    <div><strong>{allCompleted} / {totals}</strong><span>activities completed</span></div>
    </div>
-   <p className="course-privacy">No account required. Answers stay in this open browser tab; refreshing the page clears them. Export your journal before leaving.</p>
-   <button type="button" className="course-export" onClick={onExport}>Download my journal (.md)</button>
+   <div className="course-save-info">
+     <strong>{saveStatus==='saved'?'✓ Your work is automatically saved on this device':saveStatus==='saving'?'Saving your work locally…':'Automatic saving is unavailable in this browser'}</strong>
+     <p>{saveStatus==='unavailable'
+       ? 'Your answers still work for this visit, but may disappear when you close the page. Download your journal to keep a copy.'
+       : 'Predictions, observations, reflections and progress are stored privately in this browser using IndexedDB. Reopening this site in the same browser normally restores them.'}</p>
+     <p>Not synced between computers or browsers. Private browsing, browser-data clearing, and some locally opened HTML files may lose access to saved work. On shared school devices, remove your answers when finished.</p>
+   </div>
+   <div className="course-save-actions">
+     <button type="button" className="course-export" onClick={onExport}>Download my journal (.md)</button>
+     <button type="button" className="course-clear" onClick={onClear}>Clear saved answers from this browser</button>
+   </div>
    <div className="course-resource-links">
      {offlineMode ? <>
        <button type="button" onClick={()=>openEmbeddedPrintable('student')}>Print student workbook</button>

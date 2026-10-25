@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Sphere from './visualization/Sphere'
 import MeasurementLab from './measurement/MeasurementLab'
 import EntanglementLab from './entanglement/EntanglementLab'
 import { CourseHome, LessonGuide } from './curriculum/Course'
 import { LESSONS, courseSummary, type LabMode, type LessonId, type StudentEntry } from './curriculum/lessons'
 import { NORTH, rotate, stateName, type Axis, type Pulse, type Vector } from './quantum/bloch'
+import { emptyStudentWork } from './persistence/studentWork'
+import { useStudentWork } from './persistence/useStudentWork'
 import { holdDegrees, roundDegrees } from './interaction/hold'
 import { CHALLENGES, applyFrom, checkChallenge, type Challenge } from './challenges/challenges'
 
@@ -25,11 +27,12 @@ export default function App() {
   const [mode, setMode] = useState<Mode>('course')
   const [guidedLesson, setGuidedLesson] = useState<LessonId | null>(null)
   const [guidedStep, setGuidedStep] = useState(0)
-  const [journal, setJournal] = useState<Readonly<Record<string, StudentEntry>>>({})
+  const {work, setWork, status: saveStatus, ready: workReady} = useStudentWork()
+  const journal = work.journal
+  const completed = useMemo(() => new Set(work.completedChallenges), [work.completedChallenges])
   const [challengeIndex, setChallengeIndex] = useState(0)
   const [hintVisible, setHintVisible] = useState(false)
   const [assessment, setAssessment] = useState<ReturnType<typeof checkChallenge> | null>(null)
-  const [completed, setCompleted] = useState<ReadonlySet<string>>(() => new Set())
 
   const vectorRef = useRef<Vector>(NORTH)
   const busyRef = useRef(false)
@@ -77,7 +80,7 @@ export default function App() {
 
 
   function setEntry(id: string, changes: Partial<StudentEntry>) {
-    setJournal(previous=>({...previous,[id]:{...previous[id],...changes}}))
+    setWork(previous=>({...previous, journal: {...previous.journal, [id]: {...previous.journal[id], ...changes}}}))
   }
   function routeLessonTool(tool: LabMode, selectedChallenge?: number) {
     if (busyRef.current) return
@@ -115,6 +118,10 @@ export default function App() {
   function openExperiment(tool: LabMode, selectedChallenge?: number) {
     routeLessonTool(tool,selectedChallenge)
     document.getElementById('lab-workspace')?.scrollIntoView({behavior:'smooth',block:'start'})
+  }
+  function clearSavedWork() {
+    if (!window.confirm('Clear all your saved lesson answers and challenge progress from this browser? Export your Markdown journal first if you want to keep a copy. This cannot be undone.')) return
+    setWork(emptyStudentWork())
   }
   function exportJournal() {
     const blob=new Blob([courseSummary(journal)],{type:'text/markdown;charset=utf-8'})
@@ -244,15 +251,18 @@ export default function App() {
     const result = checkChallenge(challenge, vectorRef.current, history)
     setAssessment(result)
     if (result.success) {
-      setCompleted(previous => new Set([...previous, challenge.id]))
+      setWork(previous => ({...previous, completedChallenges: [...new Set([...previous.completedChallenges, challenge.id])]}))
     }
   }
+
+  if (!workReady) return <div className="work-loading" role="status">Loading your saved Quantum Explorer work…</div>
 
   return <div className="page">
     <header className="header">
       <span className="logo">Q</span>
       <div><strong>Quantum Explorer</strong><span className="subtitle">Visual quantum physics · no sign-in required</span></div>
-      <span className="chip">M5 · Guided Lessons</span>
+      <span className="save-status" role="status" aria-live="polite">{saveStatus === 'saving' ? 'Saving locally…' : saveStatus === 'saved' ? '✓ Saved on this device' : 'Local saving unavailable — download your journal'}</span>
+      <span className="chip">Quantum Explorer</span>
     </header>
     <main>
       <section className="intro">
@@ -267,7 +277,7 @@ export default function App() {
           <button type="button" className={mode === 'entanglement' ? 'selected' : ''} aria-pressed={mode === 'entanglement'} disabled={busy} onClick={() => chooseMode('entanglement')}>Entanglement lab</button>
         </div>
       </section>
-      {mode === 'course' && <CourseHome entries={journal} onStart={openGuidedLesson} onExport={exportJournal}/>}
+      {mode === 'course' && <CourseHome entries={journal} saveStatus={saveStatus} onStart={openGuidedLesson} onExport={exportJournal} onClear={clearSavedWork}/>}
       {guidedLesson !== null && mode !== 'course' && <LessonGuide
         lesson={LESSONS.find(item => item.id === guidedLesson)!} stepIndex={guidedStep}
         entries={journal} onSetEntry={setEntry} onNavigate={navigateGuide}

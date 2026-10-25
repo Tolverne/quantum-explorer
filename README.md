@@ -16,7 +16,7 @@ Switch between **Challenges** and **Free Explorer**. Challenge mode includes six
 5. Reach +Y from the north pole using only Y and Z.
 6. Return from +X to the north pole using only X and Z.
 
-Each challenge begins from a known prepared state, shows a **translucent cyan target arrow**, limits available axes and has a hint and a check button. The check measures *angular distance between Bloch vectors*, not the camera orientation. Students succeed within **10°** of the target, helpful for mouse-held continuous rotations. Completions are stored **in memory only for the current session**; no student accounts or progress uploads.
+Each challenge begins from a known prepared state, shows a **translucent cyan target arrow**, limits available axes and has a hint and a check button. The check measures *angular distance between Bloch vectors*, not the camera orientation. Students succeed within **10°** of the target, helpful for mouse-held continuous rotations. Challenge completions are **automatically saved in this browser's IndexedDB**; no student accounts or progress uploads.
 
 The displayed example pulse count is a reference, not a grading penalty. Fixed-angle gate buttons and on-sphere press-and-hold rotations both count as pulses.
 
@@ -54,7 +54,7 @@ The app now opens on a **Guided Lessons** dashboard with three complete ~60-minu
 - **Lesson 2:** What is measurement? Prediction vs outcome, collapse, fresh shots and choice of measurement basis.
 - **Lesson 3:** What is entanglement? Independent pairs, classically correlated pairs and Bell-state measurements in X/Z.
 
-**No student account, personal identifiers or backend are required.** Answers are only held in current-tab memory and disappear after refreshing. The **Download my journal** button exports an anonymous Markdown file to the student's device; students can print or submit that file through normal school processes.
+**No student account, personal identifiers or backend are required.** Guided-lesson predictions, written observations, reflections, completion status and challenge progress are automatically saved to IndexedDB in the same browser. Students can return to their work after closing and reopening the site, so long as the browser retains its storage. The **Download my journal** button exports an anonymous Markdown file to the student's device for printing or submission through Teams or a school LMS. A **Clear saved answers** option is provided for shared devices.
 
 Printable resource pages (open in a browser and print/save using the browser print command):
 - [Student workbook](public/resources/student-workbook.html)
@@ -78,7 +78,7 @@ To use in a classroom:
 2. Disconnect from the internet if you wish to verify offline operation.
 3. Double-click the saved \`quantum-explorer-offline.html\`. It runs locally in Chrome, Edge or a WebGL-capable browser.
 4. Open Guided Lessons to use all three lessons. Use **Print student workbook** / **Print teacher guide** to open the embedded printable resources from the same file.
-5. Students should **Download my journal** before closing or refreshing the browser tab. Their notes are intentionally only stored in current-tab memory; no accounts or cloud storage are used.
+5. Students' answers are automatically saved in IndexedDB when available, including across browser restarts. They should **Download my journal** before submitting through Teams or another school platform. Saved work is not synced between devices or browsers.
 
 The HTML file is deliberately larger than the hosted edition because it contains everything, including the full 3D simulator. It is a single file, not a ZIP or installer. It does not contain nor require student data.
 
@@ -97,6 +97,19 @@ The release build runs \`scripts/verify-offline.mjs\`, which rejects external Ja
 The 3D sphere labels use local browser canvas textures rather than the previous remotely hosted 3D font. The offline resources are embedded within the generated HTML and can be opened through browser print views even with no network connection.
 
 **Compatibility and limitations:** Requires a modern desktop/mobile browser with WebGL enabled. Some managed school devices prohibit locally opened HTML or WebGL and may need local IT approval. Pop-up blockers may prevent the embedded print view; the app offers a printable HTML download as a fallback. No web-hosting account is required to run a file locally. The offline version intentionally does not receive automatic updates; download a newer edition after future releases. 
+
+## Automatic saved work (IndexedDB)
+
+Quantum Explorer saves a student's **guided-lesson predictions, observations, reflections, completion flags, and completed Bloch challenges** automatically to IndexedDB in the browser. There is no login, student identity, analytics, cloud backup, or server storage. Students may close and reopen the same site in the same browser to continue their work.
+
+- **Live site:** Save data is associated with the site's browser origin. Switching browser profiles, devices or browsers does not transfer work.
+- **Single-file offline version:** Supports IndexedDB where the browser permits local \`file://\` storage, but local-file origins and permissions vary; moving or renaming the downloaded file may make old storage inaccessible. Always check the save indicator. If storage is blocked, the app still works in memory and shows an explicit warning.
+- **Shared school computers:** Local work may be visible to whoever next uses that browser profile. Students should **Download my journal (.md)** for submission (for example in Microsoft Teams) and then choose **Clear saved answers from this browser**.
+- **Loss of local data:** Private/incognito windows, storage policies, disk quotas, or clearing browser data may remove saved work. IndexedDB is useful convenience storage, not guaranteed backup.
+- The user-facing indicator distinguishes **Saving locally**, **Saved on this device**, and **Automatic saving unavailable**.
+- No auto-upload to Teams or other external service occurs.
+
+\`src/persistence/studentWork.ts\` contains a versioned on-device data record and schema validation. \`src/persistence/useStudentWork.ts\` restores that record before presenting editable activities and writes each edit in a committed IndexedDB transaction. Tests use an injected \`fake-indexeddb\` factory to verify saving, restoring, resetting and unsupported browsers.
 
 ## Run locally
 

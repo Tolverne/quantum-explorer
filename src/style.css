@@ -296,3 +296,16 @@
 .course-offline-download{display:inline-block;background:#e6c17c;color:#12283b;text-decoration:none;font-weight:800;border-radius:9px;padding:11px 15px;font-size:13px}
 .course-offline-download:hover{background:#f2d396}
 .offline-info{font-size:13px;color:#bbf4d7;background:#183c39;padding:12px;border-radius:9px}
+
+
+/* Automatic local IndexedDB work saving */
+.save-status{font-size:12px;color:#a6e9d2;margin-left:auto;max-width:245px;text-align:right;line-height:1.4}
+.work-loading{max-width:540px;margin:80px auto;padding:28px;border-radius:14px;background:#162b40;color:#d5e7f3;text-align:center;font:600 17px Inter,system-ui,sans-serif}
+.course-save-info{border:1px solid #3b857c;border-radius:11px;background:#183a3d;padding:14px 16px;margin-top:16px;max-width:850px}
+.course-save-info strong{color:#c0f8dc;font-size:15px}
+.course-save-info p{font-size:12px;line-height:1.55;color:#badbd6;margin:8px 0 0}
+.course-save-actions{display:flex;flex-wrap:wrap;gap:11px;margin:14px 0}
+.course-clear{background:#293c50;color:#dfedfa;border:1px solid #698398;border-radius:9px;padding:11px 14px;font-weight:650}
+.course-clear:hover{background:#36526b}
+.course-clear:focus-visible,.course-export:focus-visible{outline:3px solid #f6d58c;outline-offset:2px}
+@media(max-width:600px){.header{flex-wrap:wrap}.save-status{order:5;flex-basis:100%;text-align:left;margin:0;max-width:none}.course-save-actions>button{width:100%}}

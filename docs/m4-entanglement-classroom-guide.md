@@ -60,4 +60,4 @@ M4 represents two-qubit preparations as **4×4 density matrices**. The classical
 
 This first two-qubit version supports real-amplitude states and X/Z measurements. A future Y-basis and general phase-gate simulator requires complex density matrices. The app currently omits hardware noise, leakage, decoherence, imperfect readout and experimental uncertainty analysis.
 
-No personal information is stored or transmitted. All simulated shots are generated in the browser. The app includes no live hardware integration, no login and no server-side tracking.
+No student account or personal identifier is required, and no student answers are transmitted to a server. Guided responses and challenge completion are stored in local browser IndexedDB when allowed; teachers should remind students to clear work on shared computers and export the Markdown journal for submission. All simulated shots are generated in the browser. There is no live hardware integration, login or server-side tracking of students.
