@@ -2,13 +2,15 @@ import { useEffect, useRef, useState } from 'react'
 import Sphere from './visualization/Sphere'
 import MeasurementLab from './measurement/MeasurementLab'
 import EntanglementLab from './entanglement/EntanglementLab'
+import { CourseHome, LessonGuide } from './curriculum/Course'
+import { LESSONS, courseSummary, type LabMode, type LessonId, type StudentEntry } from './curriculum/lessons'
 import { NORTH, rotate, stateName, type Axis, type Pulse, type Vector } from './quantum/bloch'
 import { holdDegrees, roundDegrees } from './interaction/hold'
 import { CHALLENGES, applyFrom, checkChallenge, type Challenge } from './challenges/challenges'
 
 const PULSE_DURATION_MS = 630
 type HoldSession = { axis: Axis; from: Vector; started: number; direction: 1 | -1 }
-type Mode = 'explore' | 'challenge' | 'measurement' | 'entanglement'
+type Mode = LabMode | 'course'
 
 export default function App() {
   const [vector, setVector] = useState<Vector>(NORTH)
@@ -20,7 +22,10 @@ export default function App() {
   const [heldAxis, setHeldAxis] = useState<Axis | null>(null)
   const [liveAngle, setLiveAngle] = useState(0)
 
-  const [mode, setMode] = useState<Mode>('challenge')
+  const [mode, setMode] = useState<Mode>('course')
+  const [guidedLesson, setGuidedLesson] = useState<LessonId | null>(null)
+  const [guidedStep, setGuidedStep] = useState(0)
+  const [journal, setJournal] = useState<Readonly<Record<string, StudentEntry>>>({})
   const [challengeIndex, setChallengeIndex] = useState(0)
   const [hintVisible, setHintVisible] = useState(false)
   const [assessment, setAssessment] = useState<ReturnType<typeof checkChallenge> | null>(null)
@@ -53,6 +58,7 @@ export default function App() {
 
   function chooseMode(next: Mode) {
     if (busyRef.current || next === mode) return
+    setGuidedLesson(null)
     setMode(next)
     setHintVisible(false)
     setAxis(next === 'challenge' ? challenge.allowedAxes[0] : 'x')
@@ -193,20 +199,27 @@ export default function App() {
     <header className="header">
       <span className="logo">Q</span>
       <div><strong>Quantum Explorer</strong><span className="subtitle">Visual quantum physics · no sign-in required</span></div>
-      <span className="chip">M4 · Entanglement</span>
+      <span className="chip">M5 · Guided Lessons</span>
     </header>
     <main>
       <section className="intro">
-        <span className="overline">{mode === 'entanglement' ? 'LESSON 03 · ENTANGLEMENT' : mode === 'measurement' ? 'LESSON 02 · QUANTUM MEASUREMENT' : 'LESSON 01 · THE QUANTUM STATE'}</span>
-        <h1>{mode === 'entanglement' ? 'What is entanglement?' : mode === 'measurement' ? 'What happens when we measure?' : 'What is a qubit?'}</h1>
-        <p>{mode === 'entanglement' ? 'Explore correlations between two qubits and discover the difference between classical pairs and Bell states.' : mode === 'measurement' ? 'Prepare a quantum state, observe individual results and compare repeated measurements with predictions.' : 'Discover quantum rotations by moving the Bloch vector. In Challenge mode, try to match the translucent target arrow using as few pulses as you can.'}</p>
+        <span className="overline">{mode === 'course' ? 'QUANTUM EXPLORER · COURSE' : mode === 'entanglement' ? 'LESSON 03 · ENTANGLEMENT' : mode === 'measurement' ? 'LESSON 02 · QUANTUM MEASUREMENT' : 'LESSON 01 · THE QUANTUM STATE'}</span>
+        <h1>{mode === 'course' ? 'Welcome to Quantum Explorer' : mode === 'entanglement' ? 'What is entanglement?' : mode === 'measurement' ? 'What happens when we measure?' : 'What is a qubit?'}</h1>
+        <p>{mode === 'course' ? 'Learn how qubits, measurement and entanglement work through three interactive lessons.' : mode === 'entanglement' ? 'Explore correlations between two qubits and discover the difference between classical pairs and Bell states.' : mode === 'measurement' ? 'Prepare a quantum state, observe individual results and compare repeated measurements with predictions.' : 'Discover quantum rotations by moving the Bloch vector. In Challenge mode, try to match the translucent target arrow using as few pulses as you can.'}</p>
         <div className="mode-switch" role="group" aria-label="Explorer mode">
+          <button type="button" className={mode === 'course' ? 'selected' : ''} aria-pressed={mode === 'course'} disabled={busy} onClick={() => chooseMode('course')}>Guided lessons</button>
           <button type="button" className={mode === 'challenge' ? 'selected' : ''} aria-pressed={mode === 'challenge'} disabled={busy} onClick={() => chooseMode('challenge')}>🎯 Challenges</button>
           <button type="button" className={mode === 'explore' ? 'selected' : ''} aria-pressed={mode === 'explore'} disabled={busy} onClick={() => chooseMode('explore')}>Free explorer</button>
           <button type="button" className={mode === 'measurement' ? 'selected' : ''} aria-pressed={mode === 'measurement'} disabled={busy} onClick={() => chooseMode('measurement')}>Measurement lab</button>
           <button type="button" className={mode === 'entanglement' ? 'selected' : ''} aria-pressed={mode === 'entanglement'} disabled={busy} onClick={() => chooseMode('entanglement')}>Entanglement lab</button>
         </div>
       </section>
+      {mode === 'course' && <CourseHome entries={journal} onStart={openGuidedLesson} onExport={exportJournal}/>}
+      {guidedLesson !== null && mode !== 'course' && <LessonGuide
+        lesson={LESSONS.find(item => item.id === guidedLesson)!} stepIndex={guidedStep}
+        entries={journal} onSetEntry={setEntry} onNavigate={navigateGuide}
+        onLaunchTool={openExperiment} onExit={exitGuide} onExport={exportJournal}/>}
+      <div id="lab-workspace"/>
       {mode === 'challenge' && <section className="challenge-panel" aria-label="Bloch sphere challenges">
         <div className="challenge-topline">
           <span className="overline">MISSION {challengeIndex + 1} OF {CHALLENGES.length}</span>
@@ -307,6 +320,6 @@ export default function App() {
         </section>
       </div>}
     </main>
-    <footer>Quantum Explorer · Runs entirely in your browser · Explore qubits, measurement and entanglement</footer>
+    <footer>Quantum Explorer · No sign-in · Guided lessons, free labs and private session notes</footer>
   </div>
 }
