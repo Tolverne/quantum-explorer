@@ -75,6 +75,59 @@ export default function App() {
     setStartingState(selected.start)
   }
 
+
+  function setEntry(id: string, changes: Partial<StudentEntry>) {
+    setJournal(previous=>({...previous,[id]:{...previous[id],...changes}}))
+  }
+  function routeLessonTool(tool: LabMode, selectedChallenge?: number) {
+    if (busyRef.current) return
+    setMode(tool)
+    if (tool === 'challenge' && selectedChallenge !== undefined) {
+      const item=CHALLENGES[selectedChallenge]
+      setChallengeIndex(selectedChallenge)
+      setAxis(item.allowedAxes[0])
+      setStartingState(item.start)
+      setHintVisible(false)
+    } else if (tool === 'explore') {
+      setStartingState(NORTH)
+      setAxis('x')
+    }
+  }
+  function openGuidedLesson(id: LessonId) {
+    if (busyRef.current) return
+    const lesson=LESSONS.find(item=>item.id===id)!
+    setGuidedLesson(id)
+    setGuidedStep(0)
+    routeLessonTool(lesson.activities[0].tool,lesson.activities[0].challengeIndex)
+  }
+  function navigateGuide(index: number) {
+    if (busyRef.current || guidedLesson===null) return
+    const lesson=LESSONS.find(item=>item.id===guidedLesson)!
+    if (index<0 || index>=lesson.activities.length) return
+    setGuidedStep(index)
+    routeLessonTool(lesson.activities[index].tool,lesson.activities[index].challengeIndex)
+  }
+  function exitGuide() {
+    if (busyRef.current) return
+    setGuidedLesson(null)
+    setMode('course')
+  }
+  function openExperiment(tool: LabMode, selectedChallenge?: number) {
+    routeLessonTool(tool,selectedChallenge)
+    document.getElementById('lab-workspace')?.scrollIntoView({behavior:'smooth',block:'start'})
+  }
+  function exportJournal() {
+    const blob=new Blob([courseSummary(journal)],{type:'text/markdown;charset=utf-8'})
+    const url=URL.createObjectURL(blob)
+    const link=document.createElement('a')
+    link.href=url
+    link.download='quantum-explorer-investigation-journal.md'
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+    window.setTimeout(()=>URL.revokeObjectURL(url),1000)
+  }
+
   // Interpolate one rotation from its original state, not from the previous frame.
   function animate(command: Pulse): Promise<void> {
     return new Promise(resolve => {
