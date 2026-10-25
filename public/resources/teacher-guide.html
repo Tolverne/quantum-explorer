@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quantum Explorer — Teacher Guide</title>
+<style>:root{font-family:Arial,Helvetica,sans-serif;color:#1a293a}body{max-width:850px;margin:32px auto;padding:0 28px;line-height:1.6}h1{color:#13565a;border-bottom:3px solid #348781;padding-bottom:9px}h2{color:#175f66}h3{color:#276b68}table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #a8bfcb;padding:8px;text-align:left}th{background:#e7f2f0}.callout{background:#eaf4f1;padding:13px;border-left:4px solid #2c8f82}section{page-break-before:always;break-before:page}li{margin-bottom:6px}@media print{@page{size:A4;margin:17mm}body{margin:0;padding:0}}</style></head><body>
+<h1>Quantum Explorer · Teacher Guide</h1>
+<p>Three approximately 60-minute Year 10 inquiry lessons introducing quantum states, measurement and entanglement. Designed for students moving towards senior physics and a university quantum-computing visit. The module can also be used independently of any excursion.</p>
+<p class="callout"><b>How to teach:</b> Students predict, perform the ideal simulated experiment, record observations and explain them. The guided course, open labs and target challenges use the same underlying simulator. No student account is required. Students can export a Markdown journal to keep their work. The app deliberately does not interpret a wrong prediction as a failed activity.</p>
+<h2>Teacher preparation</h2>
+<ol><li>Visit <strong>tolverne.github.io/quantum-explorer/</strong> from a school-managed browser; verify the site is permitted by the school's network.</li>
+<li>Have students open <b>Guided lessons</b> and select the relevant lesson. They can use the lab beneath the guided prompts.</li>
+<li>Students may use the self-contained printed student workbook instead of typing online. No names are required.</li>
+<li>Model prediction-first thinking. The aim is reasoning, not memorising correct choices.</li>
+<li>For a class with mixed readiness, omit the last activity from each lesson and use that time for discussion.</li></ol>
+<section><h2>Lesson 1 — What is a qubit?</h2>
+<p><b>Learning objective:</b> Prepare and distinguish quantum states with rotations of the Bloch vector; understand that a pulse is not camera movement.</p>
+<table><tr><th>Timing</th><th>Investigation</th><th>Expected prediction and observation</th></tr>
+<tr><td>12 min</td><td>Quantum bit flip</td><td><b>Option 1.</b> X(+180°) sends +Z (|0⟩) to −Z (|1⟩).</td></tr>
+<tr><td>13 min</td><td>Beyond zero and one</td><td><b>Option 2.</b> Y(+90°) sends +Z to +X (|+⟩), on the equator.</td></tr>
+<tr><td>12 min</td><td>Rotation around itself</td><td><b>Option 3.</b> Z(+90°) at +Z leaves the Bloch direction unchanged; at +X it turns the arrow around the equator.</td></tr>
+<tr><td>18 min</td><td>Two-pulse route</td><td><b>Option 2.</b> Axes do not generally commute. Challenge 5: Y(+90°), Z(+90°).</td></tr></table>
+<p><b>Plenary (5 min):</b> A qubit is not a classical bit with a literal spinning pointer. Global phase is absent from the Bloch sphere. Ask students what measurements of an equatorial state might show.</p>
+<h3>Common misconceptions</h3><ul><li>The state arrow is not a physical orientation of an electron.</li><li>A Z rotation that does not move |0⟩ is not an implementation fault; it changes no observable one-qubit state.</li><li>Moving the camera never changes a prepared state.</li></ul>
+</section>
+<section><h2>Lesson 2 — What is measurement?</h2>
+<p><b>Learning objective:</b> Distinguish a known state from a single outcome, demonstrate collapse and compare measurement bases.</p>
+<table><tr><th>Timing</th><th>Investigation</th><th>Expected prediction and observation</th></tr>
+<tr><td>12 min</td><td>Predictable outcome</td><td><b>Option 1.</b> |0⟩ in Z always gives 0; |1⟩ always gives 1.</td></tr>
+<tr><td>14 min</td><td>Known state, uncertain result</td><td><b>Option 3.</b> |+⟩ in Z is 50/50 over fresh shots, but one shot gives a definite result.</td></tr>
+<tr><td>14 min</td><td>Same qubit twice</td><td><b>Option 2.</b> If the first Z result was 1, immediate Z remeasurement gives 1 again.</td></tr>
+<tr><td>15 min</td><td>Change the axis</td><td><b>Option 1.</b> |+⟩ measured in X always gives +; in Z it is 50/50.</td></tr></table>
+<p><b>Plenary (5 min):</b> Probabilities are not individual observed results. Repeated measurements on the same collapsed qubit are not equivalent to shots on many freshly prepared qubits. The simulator supplies an ideal projective rule but does not resolve foundational measurement interpretations.</p>
+<h3>Discussion</h3><ul><li>Why might 100 trials give 54 zeroes rather than exactly 50?</li><li>What does changing the basis mean physically?</li><li>Why does the same prepared state support different outcomes in different bases?</li></ul>
+</section>
+<section><h2>Lesson 3 — What is entanglement?</h2>
+<p><b>Learning objective:</b> Describe joint outcomes, explore classical correlations and identify what distinguishes a Bell state from the 00/11 mixture.</p>
+<table><tr><th>Timing</th><th>Investigation</th><th>Expected prediction and observation</th></tr>
+<tr><td>12 min</td><td>Independent pair</td><td><b>Option 2.</b> |++⟩ in Z/Z has four equally likely outcomes; X/X always gives ++.</td></tr>
+<tr><td>14 min</td><td>Classical pair</td><td><b>Option 1.</b> Random 00/11 source has Z/Z perfect agreement, X/X no correlation.</td></tr>
+<tr><td>17 min</td><td>Bell Φ+</td><td><b>Option 1.</b> Bell Φ+ gives 00/11 in Z/Z and ++/−− in X/X, 50% each.</td></tr>
+<tr><td>12 min</td><td>Bell Φ−</td><td><b>Option 2.</b> Bell Φ− gives 00/11 in Z/Z but +−/−+ in X/X.</td></tr></table>
+<p><b>Plenary (5 min):</b> Strong matching results in just one basis are not proof of entanglement. Changing bases exposes the coherence of the Bell state. A reduced Bloch vector at the centre represents maximal local mixture; it is not a broken 3D arrow.</p>
+<h3>Extension: two-basis entanglement witness</h3>
+<p>For trusted two-qubit projective measurements, any separable state obeys ⟨ZZ⟩+⟨XX⟩ ≤ 1. Bell Φ+ gives 2; a 00/11 classical mixture gives 1. This is not a Bell-inequality violation demonstration. Finite samples require significance analysis before making formal claims. Conditional Bob-state updates do not permit signalling without communicating Alice’s outcome by ordinary means.</p>
+</section>
+<section><h2>Implementation, safety and privacy</h2>
+<p>All calculations run in the browser. M1–M3 model ideal pure-qubit rotations and projective measurements; M4 models two-qubit real density matrices for the prepared states and X/Z bases. There is no simulated hardware noise, detector error, Y-basis generality or actual NQCT connection. Avoid suggesting that the demonstration proves a particular interpretation of quantum mechanics.</p>
+<p>No account, student identity, analytics or backend is needed. The online host may still process request logs. Student answers are only retained in memory for that browser session and should be exported before leaving. Printable resources work without sign-in once downloaded.</p>
+<h2>Suggested formative assessment</h2>
+<p>Assess each response on (i) a recorded observation, (ii) an explanation grounded in the specific measurement basis and preparation, and (iii) the distinction between predictions and observed outcomes. Incorrect initial predictions are pedagogically useful and need not be penalised.</p>
+</section></body></html>

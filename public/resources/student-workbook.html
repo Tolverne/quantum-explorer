@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quantum Explorer — Student Investigation Workbook</title>
+<style>
+:root{font-family:Arial,Helvetica,sans-serif;color:#19283b}body{max-width:850px;margin:32px auto;padding:0 30px;line-height:1.52}
+header{border-bottom:3px solid #267f78;padding-bottom:13px}h1{font-size:27px;margin:0;color:#13464a}h2{font-size:21px;color:#135b61}h3{font-size:15px;margin-bottom:6px}
+.subtitle{color:#60768d;margin:5px 0}.note{background:#eaf5f2;border-left:3px solid #277d78;padding:10px 13px}
+section.lesson{break-before:page;page-break-before:always}article{break-inside:avoid;border-top:1px solid #acc6c8;margin:14px 0;padding-top:9px}.step{font-size:11px;color:#397875;text-transform:uppercase;letter-spacing:.08em}
+.prompt{margin:5px 0;font-size:13px}.write{height:48px;border-bottom:1px solid #b0bcc8;background:repeating-linear-gradient(to bottom,transparent 0,transparent 22px,#d5dde4 23px)}.box{display:inline-block;border:1px solid #59778a;width:12px;height:12px;margin:0 6px 0 15px}
+footer{font-size:11px;color:#60768d;border-top:1px solid #ccc;padding:13px 0;margin-top:20px}
+@media print{@page{size:A4;margin:16mm}body{max-width:none;margin:0;padding:0}.lesson{break-before:page}.write{height:45px}}
+</style></head><body>
+<header><h1>Quantum Explorer</h1><p class="subtitle">Student Investigation Workbook · Year 10 · Three approximately 60-minute lessons</p>
+<p class="note">Make a prediction before running the experiment. Record what actually happened, then explain it. No account or identifying information is required. Open the interactive app at <strong>tolverne.github.io/quantum-explorer/</strong>.</p>
+</header>
+<section class="lesson"><h2>Lesson 1 · What is a qubit?</h2><p><b>Big question:</b> How can we prepare a qubit in more than just two states?</p>
+<article><span class="step">1 · A quantum bit flip</span><h3>Prediction: What happens to |0⟩ under X(+180°)?</h3>
+<p class="prompt"><span class="box"></span>Ends at |1⟩ <span class="box"></span>Stays at |0⟩ <span class="box"></span>Points +X</p>
+<p class="prompt"><b>Experiment:</b> Free Explorer → Reset → X(+180°), then replay. Change your camera view.</p>
+<p class="prompt">Observation:</p><div class="write"></div>
+<p class="prompt">Explanation: How is rotating the qubit different from moving the camera?</p><div class="write"></div></article>
+<article><span class="step">2 · Beyond zero and one</span><h3>Prediction: Where does Y(+90°) take |0⟩?</h3>
+<p class="prompt"><span class="box"></span>South <span class="box"></span>+X equator <span class="box"></span>Stays +Z</p>
+<p class="prompt"><b>Experiment:</b> Reset, Y(+90°), then try Z rotation on the equator.</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: What new possibility does the Bloch sphere show?</p><div class="write"></div></article>
+<article><span class="step">3 · Rotating around itself</span><h3>Prediction: What will Z(+90°) do to |0⟩?</h3>
+<p class="prompt"><span class="box"></span>Move +X <span class="box"></span>Move |1⟩ <span class="box"></span>No visible change</p>
+<p class="prompt"><b>Experiment:</b> Rotate around Z at the north pole, then after preparing |+⟩.</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: Why do the two cases differ?</p><div class="write"></div></article>
+<article><span class="step">4 · Two-pulse route</span><h3>Prediction: Does Y then Z always equal Z then Y?</h3>
+<p class="prompt"><span class="box"></span>Always <span class="box"></span>Not generally <span class="box"></span>Only negative angles</p>
+<p class="prompt"><b>Experiment:</b> Target Challenges 5 and 6; record an ordered pulse sequence.</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: Why does order matter?</p><div class="write"></div></article></section>
+<section class="lesson"><h2>Lesson 2 · What is measurement?</h2><p><b>Big question:</b> How can a known quantum state give an unpredictable outcome?</p>
+<article><span class="step">1 · A predictable measurement</span><h3>Prediction: What does |0⟩ give when measured in Z?</h3>
+<p class="prompt"><span class="box"></span>Always 0 <span class="box"></span>Always 1 <span class="box"></span>50/50</p>
+<p class="prompt"><b>Experiment:</b> Measurement Lab → prepare |0⟩, Z, measure once and run 100 fresh shots. Repeat for |1⟩.</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: Why is this case predictable?</p><div class="write"></div></article>
+<article><span class="step">2 · Known state, uncertain result</span><h3>Prediction: What happens to |+⟩ in Z?</h3>
+<p class="prompt"><span class="box"></span>Always 0 <span class="box"></span>Always 1 <span class="box"></span>Either, 50/50</p>
+<p class="prompt"><b>Experiment:</b> Prepare |+⟩, measure once and then compare 10, 100, 1,000 fresh shots.</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: How does probability differ from a particular outcome?</p><div class="write"></div></article>
+<article><span class="step">3 · The same qubit, twice</span><h3>Prediction: If Z measurement gave 1, what will immediate repeated Z measurement give?</h3>
+<p class="prompt"><span class="box"></span>0 <span class="box"></span>1 <span class="box"></span>50/50 again</p>
+<p class="prompt"><b>Experiment:</b> Measure a prepared |+⟩ twice without re-preparing; compare with the Prepare again button.</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: Why do repeated and fresh measurements differ?</p><div class="write"></div></article>
+<article><span class="step">4 · Change measuring axis</span><h3>Prediction: What does |+⟩ give in X?</h3>
+<p class="prompt"><span class="box"></span>Always + <span class="box"></span>Always − <span class="box"></span>50/50</p>
+<p class="prompt"><b>Experiment:</b> Compare |+⟩ in Z and X; then |0⟩ in both bases.</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: Why must we specify the measurement basis?</p><div class="write"></div></article></section>
+<section class="lesson"><h2>Lesson 3 · What is entanglement?</h2><p><b>Big question:</b> What do joint measurements reveal that local qubits cannot?</p>
+<article><span class="step">1 · Independent qubits</span><h3>Prediction: Two separate |+⟩ qubits in Z/Z?</h3>
+<p class="prompt"><span class="box"></span>Only 00/11 <span class="box"></span>All four equally <span class="box"></span>Only 01/10</p>
+<p class="prompt"><b>Experiment:</b> Entanglement Lab → Independent → Z/Z 100 pairs, then X/X.</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: Why isn't always seeing ++ in X/X proof of entanglement?</p><div class="write"></div></article>
+<article><span class="step">2 · A classical explanation</span><h3>Prediction: Classical 00/11 pair in Z/Z?</h3>
+<p class="prompt"><span class="box"></span>Always match <span class="box"></span>Always differ <span class="box"></span>Four equal</p>
+<p class="prompt"><b>Experiment:</b> Classical pair → compare Z/Z and X/X over 100 pairs each.</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: Why are matching Z results not enough?</p><div class="write"></div></article>
+<article><span class="step">3 · The Bell-pair mystery</span><h3>Prediction: Bell Φ+ in X/X?</h3>
+<p class="prompt"><span class="box"></span>Only ++/−− <span class="box"></span>All four equal <span class="box"></span>Only +−/−+</p>
+<p class="prompt"><b>Experiment:</b> Bell Φ+ → Z/Z and X/X, then measure Alice before Bob on one pair.</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: How can local qubits be random but joint results agree?</p><div class="write"></div></article>
+<article><span class="step">4 · An opposite correlation</span><h3>Prediction: Bell Φ− in X/X?</h3>
+<p class="prompt"><span class="box"></span>Match <span class="box"></span>Disagree <span class="box"></span>Four equal</p>
+<p class="prompt"><b>Experiment:</b> Bell Φ− → compare Z/Z and X/X; compare to Φ+.</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: How do two bases distinguish entanglement from the simple classical model?</p><div class="write"></div></article></section>
+<footer>Quantum Explorer · Printable companion to the no-login browser app · Ideal simulation, not live testbed data</footer>
+</body></html>
