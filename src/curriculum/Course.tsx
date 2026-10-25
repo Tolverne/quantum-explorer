@@ -66,7 +66,7 @@ export function CourseHome({entries,onStart,onExport}:{
      <a className="course-offline-download" href="./downloads/quantum-explorer-offline.html"
        download="quantum-explorer-offline.html">Download offline edition (.html)</a>
    </div>}
-   {offlineMode&&<p className="offline-info">Offline edition · All simulations and printable resources are contained in this file. No internet or student login is needed.</p> 
+   {offlineMode&&<p className="offline-info">Offline edition · All simulations and printable resources are contained in this file. No internet or student login is needed.</p>}
   </section>
   <div className="course-cards">
    {LESSONS.map(l=><article className="course-lesson-card" key={l.id}>
