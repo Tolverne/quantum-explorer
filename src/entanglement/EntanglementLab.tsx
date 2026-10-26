@@ -10,8 +10,9 @@ import {
 } from '../quantum/entanglement'
 
 const DETAILS: readonly {key:PairPreparation;label:string;description:string;preparation:string}[]=[
-  {key:'independent',label:'Independent',description:'Both qubits start in |+⟩. They are separate, not linked.',preparation:'H on Alice, H on Bob'},
-  {key:'classical',label:'Classical pair',description:'Half the pairs are 00; half are 11. We do not know which pair was sent.',preparation:'50% |00⟩, 50% |11⟩'},
+  {key:'independent',label:'Separate |+⟩ states',description:'Each qubit is prepared in |+⟩ independently; X/X is always ++.',preparation:'H on Alice, H on Bob'},
+  {key:'random-independent',label:'Two random bits',description:'Alice and Bob each independently receive 0 or 1. All 00, 01, 10 and 11 possibilities occur.',preparation:'Each bit independently random: 25% 00, 01, 10, 11'},
+  {key:'classical',label:'Classically matched bits',description:'Each bit is individually random (0 or 1), but Alice and Bob receive the SAME value: 00 or 11.',preparation:'One fair classical bit copied twice: 50% 00, 50% 11'},
   {key:'bell-plus',label:'Bell pair Φ+',description:'A joint state (|00⟩ + |11⟩)/√2, made using H then CNOT.',preparation:'H(A) → CNOT(A→B)'},
   {key:'bell-minus',label:'Bell pair Φ−',description:'A joint state (|00⟩ − |11⟩)/√2. Its X correlation is reversed.',preparation:'H(A) → CNOT(A→B) → Z(A)'}
 ]
@@ -105,9 +106,9 @@ export default function EntanglementLab(){
   const currentJoint=stage==='both'&&aRecord&&bRecord?outcomeLabel([aRecord.outcome,bRecord.outcome],aRecord.basis,bRecord.basis):null
   return <section className="entanglement-lab" aria-label="Entanglement Lab">
     <div className="entanglement-intro">
-      <span className="overline">LESSON 03 · QUANTUM ENTANGLEMENT</span>
+      <span className="overline">LESSON 04 · QUANTUM ENTANGLEMENT</span>
       <h2>Can two qubits share a quantum state?</h2>
-      <p>Individual measurements can look random while pairs show a striking pattern. Compare independent, classically correlated, and entangled pairs by changing how each qubit is measured.</p>
+      <p>Individual measurements can look random while pairs show a striking pattern. Compare independently random bits, classically matched bits and entangled pairs by changing how each qubit is measured. Individual randomness is not the same thing as entanglement.</p>
       <div className="investigation-prompt"><strong>Detective challenge:</strong> First measure both qubits in Z. Then measure fresh pairs in X. Can you tell the classical pair from a Bell pair?</div>
     </div>
 
@@ -125,7 +126,7 @@ export default function EntanglementLab(){
           <div className="circuit-row"><span>A |0⟩</span><i/><b>H</b><i/><b className="control-node">●</b><i/>{kind==='bell-minus'&&<><b>Z</b><i/></>}</div>
           <div className="circuit-row"><span>B |0⟩</span><i/><i className="empty-step"/><i/><b className="cnot-target">⊕</b><i/>{kind==='bell-minus'&&<><i className="empty-step"/><i/></>}</div>
           <div className="cnot-vertical"/>
-        </div>:<p>{kind==='classical'?'A random classical choice prepares |00⟩ or |11⟩ with equal probability. This is a mixture, not a coherent Bell superposition.':'Two independent H gates prepare |+⟩ on Alice and |+⟩ on Bob.'}</p>}
+        </div>:<p>{kind==='classical'?'One randomly chosen classical bit is copied to both places. Each bit might be 0 or 1, but a particular pair is either 00 or 11. This is a classical mixture, NOT a Bell superposition.':kind==='random-independent'?'Alice and Bob independently choose 0 or 1. No matching rule: 00, 01, 10 and 11 are equally likely.':'Two independent H gates prepare |+⟩ on Alice and |+⟩ on Bob.'}</p>}
       </div>
     </section>
 
@@ -134,7 +135,7 @@ export default function EntanglementLab(){
       <SphereCard title="Bob's qubit" bloch={bobBloch} subtitle={'Local Bloch vector: ('+bobBloch.map(v=>v.toFixed(2)).join(', ')+')'}/>
     </div>
     <div className="pair-explanation">
-      <strong>Why might the arrow be at the centre?</strong> Each qubit in a Bell pair has an individually maximally mixed state. Its reduced Bloch vector is the centre point, not a full-length arrow. The quantum information is in the <em>joint state and correlations</em> between Alice and Bob.
+      <strong>Why might the arrow be at the centre?</strong> A centre dot means a maximally mixed LOCAL state: no measurement axis has a preferred outcome. This also happens for independently random bits and classically matched bits! Only the <em>joint measurement correlations across bases</em> distinguish these sources.
     </div>
 
     <section className="pair-panel">
@@ -202,7 +203,7 @@ export default function EntanglementLab(){
         <div><span>Z/Z: matching outcomes</span><strong>{evidence.zz?fmt(evidence.zz.same):'Not measured'}</strong><small>Ideal: {fmt((1+theoreticalZZ)/2)}</small></div>
         <div><span>X/X: matching outcomes</span><strong>{evidence.xx?fmt(evidence.xx.same):'Not measured'}</strong><small>Ideal: {fmt((1+theoreticalXX)/2)}</small></div>
       </div>
-      <p className="pair-footnote">For the classical 00/11 mixture and Bell Φ+, Z/Z results agree. Only Bell Φ+ also gives perfect agreement in X/X. Bell Φ− instead gives opposite X/X results, demonstrating that the relative phase matters.</p>
+      <p className="pair-footnote">Both the classically matched bits and Bell Φ+ give 00 or 11 in Z/Z; the independently random bits produce all four combinations. Only Bell Φ+ also gives perfect agreement in X/X. Bell Φ− instead gives opposite X/X results, demonstrating that the relative phase matters.</p>
       {hasBoth&&<div className="correlation-score" role="status">
         <strong>Two-basis correlation score: {experimentalScore!.toFixed(2)}</strong>
         <span>Compare with the ideal score {theoreticalScore.toFixed(2)} for this preparation. For a separable two-qubit state, the ideal score ⟨ZZ⟩ + ⟨XX⟩ cannot exceed 1; Bell Φ+ gives 2.</span>
