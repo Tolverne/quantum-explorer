@@ -4,7 +4,7 @@ describe('M5 curriculum content and learning records',()=>{
  it('has three lessons of four activities of approximately an hour',()=>{
   expect(LESSONS.map(l=>l.id)).toEqual(['qubits','measurement','mixed','entanglement'])
   expect(allActivityIds()).toHaveLength(18)
-  expect(new Set(allActivityIds()).size).toBe(12)
+  expect(new Set(allActivityIds()).size).toBe(18)
   LESSONS.forEach(l=>{
    expect(l.activities.length).toBeGreaterThanOrEqual(4)
    expect(l.activities.reduce((t,a)=>t+a.minutes,0)).toBeGreaterThanOrEqual(50)
@@ -26,6 +26,7 @@ describe('M5 curriculum content and learning records',()=>{
   expect(LESSONS[1].activities.every(a=>a.tool==='measurement')).toBe(true)
   expect(LESSONS[2].activities.every(a=>a.tool==='mixed')).toBe(true)
   expect(LESSONS[3].activities.every(a=>a.tool==='entanglement')).toBe(true)
+  expect(LESSONS[0].activities.some(a=>a.challengeIndex===6)).toBe(true)
  })
  it('requires a prediction, observation and reflection before completion',()=>{
   expect(canComplete(undefined)).toBe(false)
