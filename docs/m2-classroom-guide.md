@@ -17,7 +17,7 @@ By the end, students should be able to:
 2. **10 minutes:** Free Explore: rotate from |0⟩ to |1⟩ and back. Encourage predictions before pressing a pulse. Show the camera lock and undo/replay.
 3. **20 minutes:** Challenge mode: attempt Missions 1–4 individually or in pairs. Ask students to record the sequence of rotations that worked.
 4. **10 minutes:** Missions 5–6: seek the fewest pulses, compare solutions and explore why the order of pulses matters.
-5. **5–10 minutes:** Whole-class discussion: what happens when a rotation is about the axis the Bloch vector already points along? How can the same state be reached by different routes?
+5. **5–10 minutes:** Extension students can try Missions 7–10, including different initial states and restricted axis choices. Whole-class discussion: what happens when a rotation is about the axis the Bloch vector already points along? How can the same state be reached by different routes?
 
 ## Challenge solutions for teachers
 The following are examples with positive angles, and not the only possible solutions:

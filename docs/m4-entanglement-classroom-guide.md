@@ -2,7 +2,7 @@
 
 **Audience:** high-achieving Year 10 mathematics/science students preparing for Year 11 Physics and an excursion to the UQ National Quantum Computing Testbed.
 
-**Suggested duration:** 55–65 minutes. M4 is an **ideal simulator** with no student accounts, tracking or connection to real quantum hardware.
+**Suggested duration:** approximately 60 minutes, ideally after the new mixed-state lesson. M4 is an **ideal simulator** with no student accounts, tracking or connection to real quantum hardware.
 
 ## Learning intentions
 Students should be able to:
@@ -12,6 +12,8 @@ Students should be able to:
 - discover that a qubit can be locally maximally mixed (Bloch vector at the centre) while its pair has perfectly predictable correlations in suitable bases;
 - understand that Bell Φ+ can give correlated results when both qubits are measured in either Z or X, unlike the 00/11 classical mixture;
 - connect the Bell-pair preparation to the circuit H(A) followed by CNOT(A→B).
+
+**Start by distinguishing two types of classical sources:** (a) two independently random bits, which produce 00,01,10,11 equally, and (b) a single random bit copied to both students, producing only 00 or 11. Each local bit is random in both cases, but only the second has classical Z/Z correlations. Neither is entangled.
 
 ## Suggested student investigations
 
