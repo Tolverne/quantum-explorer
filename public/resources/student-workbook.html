@@ -10,7 +10,7 @@ section.lesson{break-before:page;page-break-before:always}article{break-inside:a
 footer{font-size:11px;color:#60768d;border-top:1px solid #ccc;padding:13px 0;margin-top:20px}
 @media print{@page{size:A4;margin:16mm}body{max-width:none;margin:0;padding:0}.lesson{break-before:page}.write{height:45px}}
 </style></head><body>
-<header><h1>Quantum Explorer</h1><p class="subtitle">Student Investigation Workbook · Year 10 · Three approximately 60-minute lessons</p>
+<header><h1>Quantum Explorer</h1><p class="subtitle">Student Investigation Workbook · Year 10 · Four approximately 60-minute lessons</p>
 <p class="note">Make a prediction before running the experiment. Record what actually happened, then explain it. No account or identifying information is required. Open the interactive app at <strong>tolverne.github.io/quantum-explorer/</strong>.</p>
 </header>
 <section class="lesson"><h2>Lesson 1 · What is a qubit?</h2><p><b>Big question:</b> How can we prepare a qubit in more than just two states?</p>
@@ -30,7 +30,13 @@ footer{font-size:11px;color:#60768d;border-top:1px solid #ccc;padding:13px 0;mar
 <article><span class="step">4 · Two-pulse route</span><h3>Prediction: Does Y then Z always equal Z then Y?</h3>
 <p class="prompt"><span class="box"></span>Always <span class="box"></span>Not generally <span class="box"></span>Only negative angles</p>
 <p class="prompt"><b>Experiment:</b> Target Challenges 5 and 6; record an ordered pulse sequence.</p>
-<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: Why does order matter?</p><div class="write"></div></article></section>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: Why does order matter?</p><div class="write"></div></article>
+<article><span class="step">5 · Four extra challenges</span>
+<h3>Prediction: Can the same Y(+90°) rotation lead to different end states depending on the start?</h3>
+<p class="prompt"><span class="box"></span>Yes <span class="box"></span>No <span class="box"></span>Only camera angle matters</p>
+<p class="prompt"><b>Experiment:</b> Try two of Bloch Challenge Missions 7–10. Record an ordered pulse sequence for each.</p>
+<p class="prompt">Observation (mission numbers and pulses):</p><div class="write"></div>
+<p class="prompt">Explanation: What changed with the initial state, rotation direction, or restricted axes?</p><div class="write"></div></article></section>
 <section class="lesson"><h2>Lesson 2 · What is measurement?</h2><p><b>Big question:</b> How can a known quantum state give an unpredictable outcome?</p>
 <article><span class="step">1 · A predictable measurement</span><h3>Prediction: What does |0⟩ give when measured in Z?</h3>
 <p class="prompt"><span class="box"></span>Always 0 <span class="box"></span>Always 1 <span class="box"></span>50/50</p>
@@ -48,20 +54,50 @@ footer{font-size:11px;color:#60768d;border-top:1px solid #ccc;padding:13px 0;mar
 <p class="prompt"><span class="box"></span>Always + <span class="box"></span>Always − <span class="box"></span>50/50</p>
 <p class="prompt"><b>Experiment:</b> Compare |+⟩ in Z and X; then |0⟩ in both bases.</p>
 <p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: Why must we specify the measurement basis?</p><div class="write"></div></article></section>
-<section class="lesson"><h2>Lesson 3 · What is entanglement?</h2><p><b>Big question:</b> What do joint measurements reveal that local qubits cannot?</p>
+
+<section class="lesson"><h2>Lesson 3 · What is a mixed state?</h2>
+<p><b>Big question:</b> What does a shorter Bloch vector mean?</p>
+<article><span class="step">1 · Pure states on the surface</span>
+<h3>Prediction: If every run prepares |0⟩, where is the ensemble Bloch vector?</h3>
+<p class="prompt"><span class="box"></span>North pole <span class="box"></span>Centre <span class="box"></span>Halfway south</p>
+<p class="prompt"><b>Experiment:</b> Mixed State Lab → All |0⟩. Compare measurements in Z and X. Try All |+⟩.</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Why is a random Z result from pure |+⟩ NOT the same as being at the centre?</p><div class="write"></div></article>
+<article><span class="step">2 · An uncertain preparation</span>
+<h3>Prediction: A source prepares 80% |0⟩ and 20% |1⟩. What happens in Z?</h3>
+<p class="prompt"><span class="box"></span>Always 0 <span class="box"></span>80/20 distribution <span class="box"></span>50/50</p>
+<p class="prompt"><b>Experiment:</b> Set the mixture to 80% |0⟩; notice its length is 0.6. Run fresh shots in X and Z.</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Why is the vector shorter? Is anything still predictable?</p><div class="write"></div></article>
+<article><span class="step">3 · At the centre</span>
+<h3>Prediction: An equal |0⟩/|1⟩ mixture gives what in X and Z?</h3>
+<p class="prompt"><span class="box"></span>Always 0 in Z <span class="box"></span>50/50 only in Z <span class="box"></span>50/50 in both</p>
+<p class="prompt"><b>Experiment:</b> Set weight to 50%. Check centre dot and 100/1,000 fresh trials in both bases.</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Why is the centre different from a surface point?</p><div class="write"></div></article>
+<article><span class="step">4 · Different ways to make the centre</span>
+<h3>Prediction: Is an equal |+⟩/|−⟩ mixture equivalent to equal |0⟩/|1⟩?</h3>
+<p class="prompt"><span class="box"></span>No <span class="box"></span>Yes <span class="box"></span>Only in Z</p>
+<p class="prompt"><b>Experiment:</b> Compare 50/50 X and Z mixtures, then try 80/20 X mixtures.</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">How might this help explain the individual qubits of an entangled pair?</p><div class="write"></div></article>
+</section>
+<section class="lesson"><h2>Lesson 4 · What is entanglement?</h2><p><b>Big question:</b> What do joint measurements reveal that local qubits cannot?</p>
 <article><span class="step">1 · Independent qubits</span><h3>Prediction: Two separate |+⟩ qubits in Z/Z?</h3>
 <p class="prompt"><span class="box"></span>Only 00/11 <span class="box"></span>All four equally <span class="box"></span>Only 01/10</p>
 <p class="prompt"><b>Experiment:</b> Entanglement Lab → Independent → Z/Z 100 pairs, then X/X.</p>
 <p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: Why isn't always seeing ++ in X/X proof of entanglement?</p><div class="write"></div></article>
-<article><span class="step">2 · A classical explanation</span><h3>Prediction: Classical 00/11 pair in Z/Z?</h3>
+
+<article><span class="step">2 · Two random classical bits</span>
+<h3>Prediction: Alice and Bob each choose a random bit independently. How often do they match?</h3>
+<p class="prompt"><span class="box"></span>Always <span class="box"></span>Half the time <span class="box"></span>Never</p>
+<p class="prompt"><b>Experiment:</b> Select Two random bits. Run 100 pairs in Z/Z, then X/X. Which four joint outcomes appear?</p>
+<p class="prompt">Observation:</p><div class="write"></div><p class="prompt">How is this different from COPYING one random bit to both people?</p><div class="write"></div></article>
+<article><span class="step">3 · Matched classical bits</span><h3>Prediction: A fair random bit is copied to Alice and Bob. What happens in Z/Z?</h3>
 <p class="prompt"><span class="box"></span>Always match <span class="box"></span>Always differ <span class="box"></span>Four equal</p>
-<p class="prompt"><b>Experiment:</b> Classical pair → compare Z/Z and X/X over 100 pairs each.</p>
+<p class="prompt"><b>Experiment:</b> Select Classically matched bits → compare Z/Z and X/X with Two random bits.</p>
 <p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: Why are matching Z results not enough?</p><div class="write"></div></article>
-<article><span class="step">3 · The Bell-pair mystery</span><h3>Prediction: Bell Φ+ in X/X?</h3>
+<article><span class="step">4 · The Bell-pair mystery</span><h3>Prediction: Bell Φ+ in X/X?</h3>
 <p class="prompt"><span class="box"></span>Only ++/−− <span class="box"></span>All four equal <span class="box"></span>Only +−/−+</p>
 <p class="prompt"><b>Experiment:</b> Bell Φ+ → Z/Z and X/X, then measure Alice before Bob on one pair.</p>
 <p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: How can local qubits be random but joint results agree?</p><div class="write"></div></article>
-<article><span class="step">4 · An opposite correlation</span><h3>Prediction: Bell Φ− in X/X?</h3>
+<article><span class="step">5 · An opposite correlation</span><h3>Prediction: Bell Φ− in X/X?</h3>
 <p class="prompt"><span class="box"></span>Match <span class="box"></span>Disagree <span class="box"></span>Four equal</p>
 <p class="prompt"><b>Experiment:</b> Bell Φ− → compare Z/Z and X/X; compare to Φ+.</p>
 <p class="prompt">Observation:</p><div class="write"></div><p class="prompt">Explanation: How do two bases distinguish entanglement from the simple classical model?</p><div class="write"></div></article></section>
