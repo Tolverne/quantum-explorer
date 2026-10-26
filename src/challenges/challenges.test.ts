@@ -8,7 +8,11 @@ const examples: Pulse[][] = [
   [{ axis:'x', angle:90 }],
   [{ axis:'z', angle:90 }],
   [{ axis:'y', angle:90 }, { axis:'z', angle:90 }],
-  [{ axis:'z', angle:90 }, { axis:'x', angle:90 }]
+  [{ axis:'z', angle:90 }, { axis:'x', angle:90 }],
+  [{ axis:'y', angle:90 }],
+  [{ axis:'z', angle:180 }],
+  [{ axis:'x', angle:-90 }],
+  [{ axis:'x', angle:90 }, { axis:'z', angle:-90 }]
 ]
 
 describe('M2 target-state challenges', () => {

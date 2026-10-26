@@ -5,6 +5,7 @@ import {
 } from './lessons'
 
 import type { SaveStatus } from '../persistence/useStudentWork'
+import { BACKGROUNDS } from './background'
 
 type Entries=Readonly<Record<string,StudentEntry>>
 const totals=LESSONS.reduce((n,l)=>n+l.activities.length,0)
@@ -45,10 +46,10 @@ export function CourseHome({entries,saveStatus,onStart,onExport,onClear}:{
   <section className="course-hero">
    <span className="overline">A STANDALONE YEAR 10 LEARNING MODULE</span>
    <h2>Explore quantum physics</h2>
-   <p>Three hands-on lessons. No equations or previous quantum knowledge needed. Make a prediction, use the simulator to experiment, and explain what you discover.</p>
+   <p>Four hands-on lessons. No equations or previous quantum knowledge needed. Make a prediction, use the simulator to experiment, and explain what you discover.</p>
    <div className="course-stats">
-    <div><strong>3</strong><span>60-minute lessons</span></div>
-    <div><strong>12</strong><span>guided investigations</span></div>
+    <div><strong>{LESSONS.length}</strong><span>60-minute lessons</span></div>
+    <div><strong>{totals}</strong><span>guided investigations</span></div>
     <div><strong>{allCompleted} / {totals}</strong><span>activities completed</span></div>
    </div>
    <div className="course-save-info">
@@ -140,6 +141,19 @@ export function LessonGuide({lesson,stepIndex,entries,onSetEntry,onNavigate,onLa
    <div><h2>{lesson.title}</h2><p>{lesson.essentialQuestion}</p></div>
    <span>{done}/{lesson.activities.length} complete</span>
   </div>
+  <details className="guide-lesson-explanation">
+    <summary>Teacher notes / suggested facilitation — full lesson explanation</summary>
+    <div className="guide-background">
+      <p className="guide-background-intro">{BACKGROUNDS[lesson.id].introduction}</p>
+      {BACKGROUNDS[lesson.id].sections.map(section=><section key={section.heading}>
+        <h3>{section.heading}</h3>
+        {section.paragraphs.map((paragraph,index)=><p key={index}>{paragraph}</p>)}
+      </section>)}
+      <section><h3>Discussion and teaching sequence</h3>
+        <ul>{BACKGROUNDS[lesson.id].discussion.map(item=><li key={item}>{item}</li>)}</ul>
+      </section>
+    </div>
+  </details>
   <div className="guide-step-nav" role="group" aria-label="Choose investigation">
    {lesson.activities.map((a,i)=><button key={a.id} type="button"
     aria-current={i===stepIndex?'step':undefined}
@@ -213,7 +227,7 @@ export function LessonGuide({lesson,stepIndex,entries,onSetEntry,onNavigate,onLa
    {!canFinish&&<p className="guide-small">To mark the activity complete, make a prediction and write an observation and an explanation.</p>}
    <details className="guide-teacher-details" open={showTeacher}
     onToggle={event=>setShowTeacher((event.currentTarget as HTMLDetailsElement).open)}>
-    <summary>Teacher notes / suggested facilitation</summary>
+    <summary>Activity-specific teaching tips and suggested answer</summary>
     <p>{activity.teacherNote}</p>
     <p>Expected prediction: <strong>{activity.options[activity.correct]}</strong>.</p>
    </details>

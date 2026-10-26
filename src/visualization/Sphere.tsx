@@ -99,14 +99,15 @@ function Arrow({ state }: { state: Vector }) {
     new THREE.Vector3(...state).normalize()
   ), [state[0],state[1],state[2]])
 
-  // Shaft and head both point along local +Z and meet at z = 0.94.
-  return <group quaternion={rotation}>
-    <mesh position={[0,0,0.47]} rotation={[Math.PI/2,0,0]}>
-      <cylinderGeometry args={[0.045,0.045,0.94,14]}/>
+  // The cone tip reaches radius 1 (the sphere surface); shaft and head join at 0.84.
+  const length=Math.min(1,Math.max(0,Math.hypot(...state)))
+  return <group quaternion={rotation} scale={[1,1,length]}>
+    <mesh position={[0,0,0.42]} rotation={[Math.PI/2,0,0]}>
+      <cylinderGeometry args={[0.045,0.045,0.84,14]}/>
       <meshBasicMaterial color="#ffd48b"/>
     </mesh>
-    <mesh position={[0,0,1.045]} rotation={[Math.PI/2,0,0]}>
-      <coneGeometry args={[0.135,0.21,16]}/>
+    <mesh position={[0,0,0.92]} rotation={[Math.PI/2,0,0]}>
+      <coneGeometry args={[0.135,0.16,16]}/>
       <meshBasicMaterial color="#ffd48b"/>
     </mesh>
   </group>
@@ -119,15 +120,15 @@ function TargetArrow({ target }: { target: Vector }) {
     new THREE.Vector3(...target).normalize()
   ), [target[0], target[1], target[2]])
   return <group quaternion={rotation}>
-    <mesh position={[0,0,0.47]} rotation={[Math.PI/2,0,0]}>
-      <cylinderGeometry args={[0.055,0.055,0.94,14]}/>
+    <mesh position={[0,0,0.42]} rotation={[Math.PI/2,0,0]}>
+      <cylinderGeometry args={[0.055,0.055,0.84,14]}/>
       <meshBasicMaterial color="#65ecd7" transparent opacity={0.4} depthWrite={false}/>
     </mesh>
-    <mesh position={[0,0,1.045]} rotation={[Math.PI/2,0,0]}>
-      <coneGeometry args={[0.16,0.21,16]}/>
+    <mesh position={[0,0,0.92]} rotation={[Math.PI/2,0,0]}>
+      <coneGeometry args={[0.16,0.16,16]}/>
       <meshBasicMaterial color="#65ecd7" transparent opacity={0.4} depthWrite={false}/>
     </mesh>
-    <mesh position={[0,0,1.21]}>
+    <mesh position={[0,0,1.04]}>
       <torusGeometry args={[0.15,0.017,8,40]}/>
       <meshBasicMaterial color="#65ecd7" transparent opacity={0.85} depthWrite={false}/>
     </mesh>
@@ -151,7 +152,7 @@ export default function Sphere({ state, target, allowedAxes, heldAxis, onStartHo
     <directionalLight position={[3,3,5]} intensity={1.5}/>
     <mesh>
       <sphereGeometry args={[1,48,32]}/>
-      <meshStandardMaterial color="#4e8dc5" transparent opacity={0.11} depthWrite={false}/>
+      <meshStandardMaterial color="#79bbed" transparent opacity={0.23} depthWrite={false}/>
     </mesh>
     <Guide plane="xy"/><Guide plane="xz"/><Guide plane="yz"/>
     <Axis direction={[1,0,0]} color="#ef8a79" axis="x" active={heldAxis==='x'} disabled={busy || axesDisabled || !allowedAxes.includes('x')} onStartHold={onStartHold} onEndHold={onEndHold}/>
@@ -160,7 +161,7 @@ export default function Sphere({ state, target, allowedAxes, heldAxis, onStartHo
     <group position={[0.25,0,1.2]}><CanvasLabel text="|0⟩" width={0.38} height={0.24} billboard/></group>
     <group position={[0.25,0,-1.2]}><CanvasLabel text="|1⟩" width={0.38} height={0.24} billboard/></group>
     {target && <TargetArrow target={target}/>}
-    {Math.hypot(...state) < 1e-5 ? <mesh>
+    {Math.hypot(...state) < 0.025 ? <mesh>
       <sphereGeometry args={[0.13,24,16]}/>
       <meshBasicMaterial color="#ffd48b"/>
     </mesh> : <Arrow state={state}/>}

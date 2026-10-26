@@ -8,13 +8,17 @@ A free, account-free browser learning app for Year 10 quantum physics.
 Explore a single pure qubit on an orbitable, three-dimensional Bloch sphere. Hold an X/Y/Z label to rotate continuously, or use fixed ±90° and 180° pulses. The app records one pulse per hold and supports undo, replay, reset and camera lock.
 
 ## M2 — Target-state challenges
-Switch between **Challenges** and **Free Explorer**. Challenge mode includes six progressively harder visual investigations:
+Switch between **Challenges** and **Free Explorer**. Challenge mode includes ten progressively harder visual investigations:
 1. Flip |0⟩ to |1⟩ using X.
 2. Reach |+⟩ (+X) using Y.
 3. Reach |−i⟩ (−Y) using X.
 4. Turn +X into +Y using Z (a phase change).
 5. Reach +Y from the north pole using only Y and Z.
 6. Return from +X to the north pole using only X and Z.
+7. Start at |1⟩ and reach −X with a Y quarter-turn.
+8. Rotate from +X to −X around the equator.
+9. Reach +Y from |0⟩ using a negative X quarter-turn.
+10. Reach −X from |0⟩ using only X and Z.
 
 Each challenge begins from a known prepared state, shows a **translucent cyan target arrow**, limits available axes and has a hint and a check button. The check measures *angular distance between Bloch vectors*, not the camera orientation. Students succeed within **10°** of the target, helpful for mouse-held continuous rotations. Challenge completions are **automatically saved in this browser's IndexedDB**; no student accounts or progress uploads.
 
@@ -36,7 +40,7 @@ The measurement engine is in [src/quantum/measurement.ts](src/quantum/measuremen
 ## M4 — Entanglement laboratory
 Select **Entanglement lab** to explore the difference between ordinary randomness, classical correlations, and an entangled two-qubit state.
 
-- Four preparations: independent |+⟩|+⟩, a genuine classical 00/11 mixture, Bell Φ+, and Bell Φ−.
+- Five preparations: independent |+⟩|+⟩, two independently random classical bits (I/4), a genuine classically matched 00/11 mixture, Bell Φ+, and Bell Φ−.
 - Two separate Bloch spheres show each qubit's *reduced* state. The centre dot represents a maximally mixed local state for Bell pairs, rather than pretending each qubit has its own pure Bloch arrow.
 - Choose X or Z basis for Alice and Bob independently. Measure Alice first and see Bob's **conditional** state, then measure Bob.
 - Generate 10, 100 or 1,000 fresh-pair shots and compare joint outcome histograms (00,01,10,11 or +/− equivalents) with Born-rule probabilities.
@@ -48,11 +52,12 @@ The [M4 teacher guide](docs/m4-entanglement-classroom-guide.md) includes timed i
 **Physics scope:** two-qubit 4×4 real density matrices with correct mixture handling, H/CNOT Bell preparation, partial traces and X/Z projective measurements. This is an ideal **browser simulator** and does not access NQCT hardware. Complex-amplitude Y-basis operations are outside M4's scope.
 
 ## M5 — Standalone guided teaching module
-The app now opens on a **Guided Lessons** dashboard with three complete ~60-minute lessons (12 student investigations). Each activity follows **Predict → Experiment → Explain**, with the relevant physics lab directly below the lesson prompts. Activities provide self-checking scientific explanations, optional teacher notes, estimated timings and recorded progress. Students can also switch to the original unguided labs.
+The app now opens on a **Guided Lessons** dashboard with four complete ~60-minute lessons (18 student investigations). Each activity follows **Predict → Experiment → Explain**, with the relevant physics lab directly below the lesson prompts. Activities provide self-checking scientific explanations, optional teacher notes, estimated timings and recorded progress. Students can also switch to the original unguided labs.
 
 - **Lesson 1:** What is a qubit? Bloch-sphere poles, superpositions, axis rotations and pulse-order challenge.
 - **Lesson 2:** What is measurement? Prediction vs outcome, collapse, fresh shots and choice of measurement basis.
-- **Lesson 3:** What is entanglement? Independent pairs, classically correlated pairs and Bell-state measurements in X/Z.
+- **Lesson 3:** What is a mixed state? Preparation uncertainty, the interior of the Bloch sphere, and X/Z measurement statistics.
+- **Lesson 4:** What is entanglement? Independently random classical bits, matched classical bits, and Bell-state correlations in X/Z.
 
 **No student account, personal identifiers or backend are required.** Guided-lesson predictions, written observations, reflections, completion status and challenge progress are automatically saved to IndexedDB in the same browser. Students can return to their work after closing and reopening the site, so long as the browser retains its storage. The **Download my journal** button exports an anonymous Markdown file to the student's device for printing or submission through Teams or a school LMS. A **Clear saved answers** option is provided for shared devices.
 
@@ -68,7 +73,7 @@ The teacher resources are public, not password-protected. There is no tracking o
 
 ## M6 — Single-file offline classroom edition
 
-Quantum Explorer remains a normal hosted website at **https://tolverne.github.io/quantum-explorer/**. It also offers a **Download offline edition (.html)** link on the Guided Lessons home page. The offline file contains the same three guided lessons and all four laboratories, their simulations, their CSS/JavaScript and both printable resources. It opens directly in a modern browser with no network, account, server or installation.
+Quantum Explorer remains a normal hosted website at **https://tolverne.github.io/quantum-explorer/**. It also offers a **Download offline edition (.html)** link on the Guided Lessons home page. The offline file contains the same four guided lessons and all five laboratories, their simulations, their CSS/JavaScript and both printable resources. It opens directly in a modern browser with no network, account, server or installation.
 
 **Public download (after M6 is merged and Pages deployment succeeds):**
 https://tolverne.github.io/quantum-explorer/downloads/quantum-explorer-offline.html
@@ -77,7 +82,7 @@ To use in a classroom:
 1. While online, visit the site and choose **Download offline edition (.html)**. Save the file somewhere students can reach, such as a school network share, a USB drive, or an LMS download.
 2. Disconnect from the internet if you wish to verify offline operation.
 3. Double-click the saved \`quantum-explorer-offline.html\`. It runs locally in Chrome, Edge or a WebGL-capable browser.
-4. Open Guided Lessons to use all three lessons. Use **Print student workbook** / **Print teacher guide** to open the embedded printable resources from the same file.
+4. Open Guided Lessons to use all four lessons. Use **Print student workbook** / **Print teacher guide** to open the embedded printable resources from the same file.
 5. Students' answers are automatically saved in IndexedDB when available, including across browser restarts. They should **Download my journal** before submitting through Teams or another school platform. Saved work is not synced between devices or browsers.
 
 The HTML file is deliberately larger than the hosted edition because it contains everything, including the full 3D simulator. It is a single file, not a ZIP or installer. It does not contain nor require student data.
@@ -110,6 +115,26 @@ Quantum Explorer saves a student's **guided-lesson predictions, observations, re
 - No auto-upload to Teams or other external service occurs.
 
 \`src/persistence/studentWork.ts\` contains a versioned on-device data record and schema validation. \`src/persistence/useStudentWork.ts\` restores that record before presenting editable activities and writes each edit in a committed IndexedDB transaction. Tests use an injected \`fake-indexeddb\` factory to verify saving, restoring, resetting and unsupported browsers.
+
+## Curriculum refinement — mixed states, additional challenges, teacher explanations
+
+The guided course now has **four ~60-minute lessons, comprising eighteen investigations**, in the order: Qubits → Measurement → Mixed States → Entanglement.
+
+The **Mixed State Lab** introduces physical single-qubit Bloch vectors inside the sphere. Students choose a statistical mixture of |0⟩/|1⟩ or |+⟩/|−⟩, change the mixture percentage, inspect the Bloch-vector length, measure in X or Z, and simulate 10/100/1,000 fresh preparations. Crucially, a pure |+⟩ is random in Z but certain in X, whereas a maximally mixed state (centre dot) is 50/50 for every axis. The mixed-state engine uses unnormalised-with-respect-to-purity Bloch vectors and the Born rule (1 + r·n)/2, with unit tests.
+
+The entanglement laboratory now separates five sources:
+- **Two independently random classical bits:** 00, 01, 10 and 11 are all possible, each 25%.
+- **Classically matched bits:** each bit is individually either 0 or 1, but a classical copying process produces only 00 or 11.
+- **Two independent pure |+⟩ states:** no entanglement, even though X/X always returns ++.
+- **Bell Φ+ and Φ−:** joint coherent entangled states with the appropriate Z/Z and X/X correlations.
+
+The lesson material explicitly shows why an individual Bloch sphere at the centre, or perfect matching in a single basis, **does not alone prove entanglement**. Bell Φ+ differs from a classically matched pair in its X/X results, despite identical Z/Z results.
+
+The Bloch sphere's pure-state vector now reaches the radius exactly, intermediate mixed vectors have proportional length, and the translucent shell is slightly lighter for visibility. Four extra Bloch challenges bring the total to **ten**.
+
+Each lesson has expanded one-page-style **Teacher notes / suggested facilitation** explaining the underlying physics, common misconceptions, examples and teaching discussion, alongside the activity-specific tips. The print-friendly workbook and teacher guide now cover four lessons and eighteen investigations.
+
+All existing student entries and completed challenge IDs continue to use the same IndexedDB schema; the new activities add new identifiers without invalidating earlier saved answers. Students still export Markdown for submission through Teams.
 
 ## Run locally
 

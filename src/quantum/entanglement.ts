@@ -5,7 +5,7 @@ import type { Vector } from './bloch'
 // All four preparations and both measurement bases have real amplitudes.
 // A complex density matrix will be needed for Y-basis / arbitrary phase gates.
 export type Density = readonly (readonly number[])[]
-export type PairPreparation = 'independent' | 'classical' | 'bell-plus' | 'bell-minus'
+export type PairPreparation = 'independent' | 'random-independent' | 'classical' | 'bell-plus' | 'bell-minus'
 export type JointOutcome = readonly [Outcome, Outcome]
 
 const ROOT = 1 / Math.sqrt(2)
@@ -51,10 +51,12 @@ function transform(density:Density,gate:Density):number[][]{
 function add(a:Density,b:Density):number[][]{
   return a.map((row,i)=>row.map((v,j)=>v+b[i][j]))
 }
+const ID4: number[][] = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
 const ZERO_ZERO = pure([1,0,0,0])
 const ONE_ONE = pure([0,0,0,1])
 export function preparePair(preparation:PairPreparation): number[][] {
   if(preparation==='independent') return transform(ZERO_ZERO,kron(H,H)) // |++>
+  if(preparation==='random-independent') return scale(ID4, 0.25) // I/4: two independent fair classical bits
   if(preparation==='classical') return scale(add(ZERO_ZERO,ONE_ONE),0.5)
   // |00> --H on Alice--> (|00>+|10>)/sqrt2 --CNOT--> Phi+
   const bell=transform(transform(ZERO_ZERO,kron(H,ID)),CNOT)

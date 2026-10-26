@@ -52,6 +52,19 @@ describe('IndexedDB student journal persistence', () => {
     })
   })
 
+  it('keeps previous lesson answers and accepts new mixed-state activities in the same database', async () => {
+    const storage = createStudentWorkStorage(new IDBFactory(),'test-four-lessons')
+    const mixedActivity = LESSONS.find(lesson => lesson.id === 'mixed')!.activities[0].id
+    const old = {journal: {[activity]: {reflection:'Saved before the new lesson'}}, completedChallenges:[challenge]}
+    await storage.save(old)
+    const restored = await storage.load()
+    expect(restored.journal[activity].reflection).toBe('Saved before the new lesson')
+    await storage.save({journal: {...restored.journal, [mixedActivity]: {prediction:0,observation:'At the surface'}},completedChallenges:restored.completedChallenges})
+    const both = await storage.load()
+    expect(both.journal[activity].reflection).toBe('Saved before the new lesson')
+    expect(both.journal[mixedActivity].observation).toBe('At the surface')
+  })
+
   it('reports absence of IndexedDB so users can use the Markdown export', async () => {
     const store = createStudentWorkStorage(undefined, 'unavailable')
     await expect(store.load()).rejects.toThrow('IndexedDB is unavailable')

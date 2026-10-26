@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quantum Explorer — Teacher Guide</title>
 <style>:root{font-family:Arial,Helvetica,sans-serif;color:#1a293a}body{max-width:850px;margin:32px auto;padding:0 28px;line-height:1.6}h1{color:#13565a;border-bottom:3px solid #348781;padding-bottom:9px}h2{color:#175f66}h3{color:#276b68}table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #a8bfcb;padding:8px;text-align:left}th{background:#e7f2f0}.callout{background:#eaf4f1;padding:13px;border-left:4px solid #2c8f82}section{page-break-before:always;break-before:page}li{margin-bottom:6px}@media print{@page{size:A4;margin:17mm}body{margin:0;padding:0}}</style></head><body>
 <h1>Quantum Explorer · Teacher Guide</h1>
-<p>Three approximately 60-minute Year 10 inquiry lessons introducing quantum states, measurement and entanglement. Designed for students moving towards senior physics and a university quantum-computing visit. The module can also be used independently of any excursion.</p>
+<p>Four approximately 60-minute Year 10 inquiry lessons introducing qubits, measurement, mixed states and entanglement. Designed for students moving towards senior physics and a university quantum-computing visit. The module can also be used independently of any excursion.</p>
 <p class="callout"><b>How to teach:</b> Students predict, perform the ideal simulated experiment, record observations and explain them. The guided course, open labs and target challenges use the same underlying simulator. No student account is required. Student work is automatically saved in this browser using IndexedDB when available. Students can still export a Markdown journal to keep or submit their work through Teams. The app deliberately does not interpret a wrong prediction as a failed activity.</p>
 <h2>Teacher preparation</h2>
 <ol><li>Visit <strong>tolverne.github.io/quantum-explorer/</strong> from a school-managed browser; verify the site is permitted by the school's network.</li>
@@ -13,9 +13,9 @@
 <p><b>Learning objective:</b> Prepare and distinguish quantum states with rotations of the Bloch vector; understand that a pulse is not camera movement.</p>
 <table><tr><th>Timing</th><th>Investigation</th><th>Expected prediction and observation</th></tr>
 <tr><td>12 min</td><td>Quantum bit flip</td><td><b>Option 1.</b> X(+180°) sends +Z (|0⟩) to −Z (|1⟩).</td></tr>
-<tr><td>13 min</td><td>Beyond zero and one</td><td><b>Option 2.</b> Y(+90°) sends +Z to +X (|+⟩), on the equator.</td></tr>
-<tr><td>12 min</td><td>Rotation around itself</td><td><b>Option 3.</b> Z(+90°) at +Z leaves the Bloch direction unchanged; at +X it turns the arrow around the equator.</td></tr>
-<tr><td>18 min</td><td>Two-pulse route</td><td><b>Option 2.</b> Axes do not generally commute. Challenge 5: Y(+90°), Z(+90°).</td></tr></table>
+<tr><td>12 min</td><td>Beyond zero and one</td><td><b>Option 2.</b> Y(+90°) sends +Z to +X (|+⟩), on the equator.</td></tr>
+<tr><td>10 min</td><td>Rotation around itself</td><td><b>Option 3.</b> Z(+90°) at +Z leaves the Bloch direction unchanged; at +X it turns the arrow around the equator.</td></tr>
+<tr><td>14 min</td><td>Two-pulse route</td><td><b>Option 2.</b> Axes do not generally commute. Challenge 5: Y(+90°), Z(+90°).</td></tr><tr><td>12 min</td><td>Four extra challenges</td><td><b>Option 1.</b> Missions 7–10 practise different starts, half-turns, inverse rotations and restricted axes.</td></tr></table>
 <p><b>Plenary (5 min):</b> A qubit is not a classical bit with a literal spinning pointer. Global phase is absent from the Bloch sphere. Ask students what measurements of an equatorial state might show.</p>
 <h3>Common misconceptions</h3><ul><li>The state arrow is not a physical orientation of an electron.</li><li>A Z rotation that does not move |0⟩ is not an implementation fault; it changes no observable one-qubit state.</li><li>Moving the camera never changes a prepared state.</li></ul>
 </section>
@@ -29,19 +29,31 @@
 <p><b>Plenary (5 min):</b> Probabilities are not individual observed results. Repeated measurements on the same collapsed qubit are not equivalent to shots on many freshly prepared qubits. The simulator supplies an ideal projective rule but does not resolve foundational measurement interpretations.</p>
 <h3>Discussion</h3><ul><li>Why might 100 trials give 54 zeroes rather than exactly 50?</li><li>What does changing the basis mean physically?</li><li>Why does the same prepared state support different outcomes in different bases?</li></ul>
 </section>
-<section><h2>Lesson 3 — What is entanglement?</h2>
+<section><h2>Lesson 3 — What is a mixed state?</h2>
+<p><b>Learning objective:</b> Explain mixed states as preparation ensembles and understand why the Bloch vector can be inside the sphere. Compare pure superpositions with classical uncertainty about preparation.</p>
+<table><tr><th>Timing</th><th>Investigation</th><th>Expected prediction and observation</th></tr>
+<tr><td>12 min</td><td>Pure on surface</td><td><b>Option 1.</b> All |0⟩ gives vector length 1; in Z always 0, in X 50/50. All |+⟩ is also pure but X is certain.</td></tr>
+<tr><td>14 min</td><td>80/20 mixture</td><td><b>Option 2.</b> An 80% |0⟩ and 20% |1⟩ source gives r=(0,0,0.6); Z is 80/20, X is 50/50.</td></tr>
+<tr><td>14 min</td><td>At the centre</td><td><b>Option 3.</b> Balanced opposite preparations give a centre dot and equal outcomes in ANY basis.</td></tr>
+<tr><td>15 min</td><td>Different mixtures</td><td><b>Option 2.</b> Equal |+⟩/|−⟩ and |0⟩/|1⟩ mixtures share the same density matrix I/2.</td></tr></table>
+<h3>Self-study explanation</h3>
+<p>One pure |+⟩ state, represented by the point +X on the surface, can yield 50/50 in Z while giving a certain + outcome in X. Thus being random in one basis does NOT mean that a state is mixed. To construct a mixed state, imagine a preparation device that chooses between different pure states on different runs; the population is described by a density matrix. If the source sends |0⟩ 80% of the time and |1⟩ 20%, its Bloch vector lies 60% of the radius toward +Z. Along Z the expected outcome remains biased 80/20, but X is 50/50.</p>
+<p>At an equal mixture of opposite states, the vector reaches the centre. This state, I/2, predicts 50/50 in every measurement basis, not a new third measurement outcome. A fair |+⟩/|−⟩ mixture has exactly the same single-qubit statistical predictions as a fair |0⟩/|1⟩ mixture. A mixed vector is not an incorrectly drawn pure vector: its shorter length encodes loss of information about preparation. Its purity equals (1+|r|²)/2.</p>
+<p><b>Bridge to Lesson 4:</b> Each half of a Bell state is locally maximally mixed, indistinguishable through local measurements from the above classical mixtures. The distinctive feature of entanglement is in the JOINT correlations.</p></section>
+<section><h2>Lesson 4 — What is entanglement?</h2>
 <p><b>Learning objective:</b> Describe joint outcomes, explore classical correlations and identify what distinguishes a Bell state from the 00/11 mixture.</p>
 <table><tr><th>Timing</th><th>Investigation</th><th>Expected prediction and observation</th></tr>
 <tr><td>12 min</td><td>Independent pair</td><td><b>Option 2.</b> |++⟩ in Z/Z has four equally likely outcomes; X/X always gives ++.</td></tr>
-<tr><td>14 min</td><td>Classical pair</td><td><b>Option 1.</b> Random 00/11 source has Z/Z perfect agreement, X/X no correlation.</td></tr>
-<tr><td>17 min</td><td>Bell Φ+</td><td><b>Option 1.</b> Bell Φ+ gives 00/11 in Z/Z and ++/−− in X/X, 50% each.</td></tr>
-<tr><td>12 min</td><td>Bell Φ−</td><td><b>Option 2.</b> Bell Φ− gives 00/11 in Z/Z but +−/−+ in X/X.</td></tr></table>
+<tr><td>10 min</td><td>Two random bits</td><td><b>Option 2.</b> Independent fair bits yield all 00,01,10,11 at 25% each; both local spheres show centre dots.</td></tr>
+<tr><td>12 min</td><td>Classically matched bits</td><td><b>Option 1.</b> Copying a single fair bit creates 00 or 11. Each bit is random, but they always agree in Z; X/X remains uncorrelated.</td></tr>
+<tr><td>13 min</td><td>Bell Φ+</td><td><b>Option 1.</b> Bell Φ+ gives 00/11 in Z/Z and ++/−− in X/X, 50% each.</td></tr>
+<tr><td>10 min</td><td>Bell Φ−</td><td><b>Option 2.</b> Bell Φ− gives 00/11 in Z/Z but +−/−+ in X/X.</td></tr></table>
 <p><b>Plenary (5 min):</b> Strong matching results in just one basis are not proof of entanglement. Changing bases exposes the coherence of the Bell state. A reduced Bloch vector at the centre represents maximal local mixture; it is not a broken 3D arrow.</p>
 <h3>Extension: two-basis entanglement witness</h3>
 <p>For trusted two-qubit projective measurements, any separable state obeys ⟨ZZ⟩+⟨XX⟩ ≤ 1. Bell Φ+ gives 2; a 00/11 classical mixture gives 1. This is not a Bell-inequality violation demonstration. Finite samples require significance analysis before making formal claims. Conditional Bob-state updates do not permit signalling without communicating Alice’s outcome by ordinary means.</p>
 </section>
 <section><h2>Implementation, safety and privacy</h2>
-<p>All calculations run in the browser. M1–M3 model ideal pure-qubit rotations and projective measurements; M4 models two-qubit real density matrices for the prepared states and X/Z bases. There is no simulated hardware noise, detector error, Y-basis generality or actual NQCT connection. Avoid suggesting that the demonstration proves a particular interpretation of quantum mechanics.</p>
+<p>All calculations run in the browser. Early modules model pure qubit rotations and projective measurements; the new mixed-state lesson models probability mixtures with Bloch vectors inside the unit ball. The entanglement module models two-qubit real density matrices for the prepared states and X/Z bases. There is no simulated hardware noise, detector error, Y-basis generality or actual NQCT connection. Avoid suggesting that the demonstration proves a particular interpretation of quantum mechanics.</p>
 <p>No account, student identity, analytics or backend is needed. The online host may still process request logs. Guided-lesson responses and completion status automatically save in IndexedDB in the same browser if permitted. They do not sync between devices or profiles, and browser storage may be cleared. On shared computers, export the Markdown journal and use the Clear saved answers control to remove local responses. Printable resources work without sign-in once downloaded.</p>
 <h2>Suggested formative assessment</h2>
 <p>Assess each response on (i) a recorded observation, (ii) an explanation grounded in the specific measurement basis and preparation, and (iii) the distinction between predictions and observed outcomes. Incorrect initial predictions are pedagogically useful and need not be penalised.</p>

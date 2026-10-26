@@ -67,6 +67,38 @@ export const CHALLENGES: readonly Challenge[] = [
     allowedAxes: ['x', 'z'], examplePulses: 2,
     hint: 'A +90° Z rotation reaches +Y. Then X(+90°) moves +Y to +Z.',
     teacherNote: 'Rotations do not commute; their order matters.'
+  },
+  {
+    id:'reverse-quarter', title:'From one to the equator',
+    prompt:'Begin at |1⟩ and find the −X direction using only Y rotations.',
+    start:SOUTH, startLabel:'|1⟩', target:[-1,0,0], targetLabel:'|−⟩',
+    allowedAxes:['y'], examplePulses:1,
+    hint:'A positive 90° Y turn moves −Z to −X.',
+    teacherNote:'The same quarter turn acts differently depending on the initial state.'
+  },
+  {
+    id:'equator-opposite', title:'Across the equator',
+    prompt:'Starting at +X, reach −X without leaving the equatorial plane.',
+    start:PLUS_X, startLabel:'|+⟩', target:[-1,0,0], targetLabel:'|−⟩',
+    allowedAxes:['z'], examplePulses:1,
+    hint:'Turn by a half-circle about Z.',
+    teacherNote:'A 180° Z rotation maps |+⟩ to |−⟩ (up to global phase).'
+  },
+  {
+    id:'quarter-other-way', title:'Choose the other direction',
+    prompt:'Go directly from |0⟩ to +Y with a single X rotation.',
+    start:NORTH, startLabel:'|0⟩', target:PLUS_Y, targetLabel:'|+i⟩',
+    allowedAxes:['x'], examplePulses:1,
+    hint:'Try a negative quarter-turn around X.',
+    teacherNote:'X(−90°) maps +Z to +Y, illustrating the right-hand rule.'
+  },
+  {
+    id:'restricted-route', title:'Find the restricted route',
+    prompt:'From |0⟩, reach −X, but you may only use X and Z rotations.',
+    start:NORTH, startLabel:'|0⟩', target:[-1,0,0], targetLabel:'|−⟩',
+    allowedAxes:['x','z'], examplePulses:2,
+    hint:'X(+90°) takes you to −Y; then Z(−90°) takes −Y to −X.',
+    teacherNote:'Two noncommuting pulses prepare an otherwise inaccessible target.'
   }
 ]
 

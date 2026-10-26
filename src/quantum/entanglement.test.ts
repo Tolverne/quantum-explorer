@@ -8,7 +8,7 @@ const near=(actual:readonly number[],expected:readonly number[])=>{
 }
 describe('M4: quantum and classical two-qubit correlations',()=>{
   it('all preparations are physical normalised density matrices',()=>{
-    for(const key of ['independent','classical','bell-plus','bell-minus'] as const) {
+    for(const key of ['independent','random-independent','classical','bell-plus','bell-minus'] as const) {
       const rho=preparePair(key)
       expect(trace(rho)).toBeCloseTo(1,12)
       near(rho.flat(),rho.map((row,i)=>row.map((_,j)=>rho[j][i])).flat())
@@ -20,6 +20,14 @@ describe('M4: quantum and classical two-qubit correlations',()=>{
     near(jointProbabilities(rho,'x','x'),[1,0,0,0])
     near(marginalBloch(rho,'alice'),[1,0,0])
     near(marginalBloch(rho,'bob'),[1,0,0])
+  })
+  it('two independently random classical bits give all four combinations and locally mixed qubits',()=>{
+    const rho=preparePair('random-independent')
+    for(const x of ['z','x'] as const)for(const y of ['z','x'] as const){
+      near(jointProbabilities(rho,x,y),[0.25,0.25,0.25,0.25])
+    }
+    near(marginalBloch(rho,'alice'),[0,0,0])
+    near(marginalBloch(rho,'bob'),[0,0,0])
   })
   it('classical 00/11 mixture: correlated in ZZ but uncorrelated in XX',()=>{
     const rho=preparePair('classical')
