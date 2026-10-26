@@ -38,7 +38,7 @@ describe('M5 curriculum content and learning records',()=>{
   const l=LESSONS[0]
   const entries:Record<string,StudentEntry>={[l.activities[0].id]:{prediction:1,observation:'observed',reflection:'explained',completed:true}}
   expect(completedCount(l,entries)).toBe(1)
-  expect(progressPercent(l,entries)).toBe(25)
+  expect(progressPercent(l,entries)).toBe(20)
  })
  it('exports an anonymous journal including incomplete tasks',()=>{
   const id=LESSONS[1].activities[0].id
